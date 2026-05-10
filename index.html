@@ -8,32 +8,30 @@
         :root { --cian: #00d4ff; --oscuro: #0a0a0a; }
         body { background: var(--oscuro); color: white; font-family: sans-serif; padding: 20px; text-align: center; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: #1a1a1a; border-radius: 10px; padding: 15px; border: 1px solid #333; transition: 0.3s; }
+        .card { background: #1a1a1a; border-radius: 10px; padding: 15px; border: 1px solid #333; }
         .card[data-popular="true"] { border-color: var(--cian); box-shadow: 0 0 15px var(--cian); }
         .card-img { width: 100%; border-radius: 8px; height: 150px; object-fit: cover; }
         .btn-add { background: var(--cian); border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; color: black; }
-        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px; border-radius: 50px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <h1 style="color: var(--cian); margin-bottom: 5px;">JSNETWORKS</h1>
-    <p style="font-size: 14px; color: #888; margin-bottom: 20px;">Servicios Digitales & Internet Ilimitado</p>
-    
-    <input type="text" id="searchInput" placeholder="Buscar servicio..." onkeyup="filterProducts()" style="width: 90%; max-width: 400px; padding: 12px; border-radius: 8px; border: none; background: #222; color: white; margin-bottom: 10px;">
+    <h1 style="color: var(--cian);">JSNETWORKS</h1>
+    <input type="text" id="searchInput" placeholder="Buscar servicio..." onkeyup="filterProducts()" style="width: 90%; max-width: 400px; padding: 12px; border-radius: 8px; border: none; margin-bottom: 20px;">
     
     <div id="catalogar" class="catalogar"></div>
 
     <div class="flotacion" onclick="sendOrder()">
-        🛒 PEDIR TOTAL: $<span id="total-text">0</span>
+        🛒 TOTAL: $<span id="total-text">0</span>
     </div>
 
     <script>
         const productos = [
-            { n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", popular: true, desc: "Código Downloader: 7169428. Smart TV y Celular." },
+            { n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", popular: true, desc: "Código Downloader: 7169428" },
             { n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", desc: "7d: $7.000 | 15d: $11.000 | 30d: $13.500" },
-            { n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", desc: "TikTok y Redes sin gastar tus megas personales." },
-            { n: "🎁 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg", desc: "Netflix + Disney + HBO + Prime. Garantía total." }
+            { n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", desc: "TikTok y Redes sin gastar tus megas" },
+            { n: "🎁 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg", desc: "Netflix + Disney + HBO + Prime" }
         ];
 
         let carrito = [];
@@ -46,10 +44,10 @@
                 container.innerHTML += `
                     <div class="card" ${prod.popular ? 'data-popular="true"' : ''}>
                         <img src="${prod.img}" class="card-img">
-                        <h3 style="margin: 10px 0 5px;">${prod.n}</h3>
-                        <p style="font-size: 12px; color: #aaa; min-height: 30px;">${prod.desc}</p>
-                        <p style="color: var(--cian); font-weight: bold; font-size: 18px;">$${prod.p.toLocaleString()}</p>
-                        <button class="btn-add" onclick="add(${i})">AÑADIR AL PEDIDO</button>
+                        <h3>${prod.n}</h3>
+                        <p style="font-size: 12px; color: #aaa;">${prod.desc}</p>
+                        <p style="color: var(--cian); font-weight: bold;">$${prod.p.toLocaleString()}</p>
+                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
                     </div>`;
             });
         }
