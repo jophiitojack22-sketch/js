@@ -3,41 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSNETWORKS-jack</title>
+    <title>JSNETWORKS - Catálogo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg: #000000;
-            --card: #0a0a0a;
+            --bg: #050505;
+            --card: #0f0f0f;
             --blue: #00d4ff;
             --text: #ffffff;
             --border: #1a1a1a;
         }
-        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: var(--card); border: 1px solid var(--border); border-radius: 15px; padding: 25px; width: 90%; max-width: 380px; box-shadow: 0 0 30px rgba(0, 212, 255, 0.1); }
-        .jack-head { width: 70px; height: 70px; margin: 0 auto 15px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300d4ff" stroke-width="2"/><ellipse cx="33" cy="40" rx="10" ry="15" fill="black" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="67" cy="40" rx="10" ry="15" fill="black" stroke="%2300d4ff" stroke-width="1"/><path d="M35 72 Q50 78 65 72" fill="none" stroke="%2300d4ff" stroke-width="2"/><path d="M40 70 L40 76 M45 71 L45 77 M50 72 L50 78 M55 71 L55 77 M60 70 L60 76" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center; }
-        h1 { color: var(--blue); text-align: center; font-size: 20px; letter-spacing: 3px; margin-bottom: 25px; text-transform: uppercase; }
-        label { display: block; font-size: 11px; color: #555; margin-bottom: 5px; text-transform: uppercase; }
-        input, textarea { width: 100%; padding: 12px; background: #000; border: 1px solid var(--border); border-radius: 8px; color: white; margin-bottom: 15px; box-sizing: border-box; }
-        .info-row { display: flex; justify-content: space-between; background: #000; padding: 12px; border-radius: 8px; border-left: 3px solid var(--blue); font-size: 13px; margin-top: 10px; }
-        .btn { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 8px; font-weight: bold; text-transform: uppercase; cursor: pointer; }
-        .btn-ws { background: var(--blue); color: #000; }
-        .btn-pay { background: transparent; color: var(--blue); border: 1px solid var(--blue); }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding-bottom: 90px;
+        }
+
+        header {
+            padding: 30px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #001a2e, var(--bg));
+            border-bottom: 1px solid var(--blue);
+        }
+
+        .logo-placeholder {
+            font-size: 50px;
+            color: var(--blue);
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px var(--blue);
+        }
+
+        .container {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-info {
+            padding: 12px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-price {
+            color: var(--blue);
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .btn-add {
+            background: transparent;
+            color: var(--blue);
+            border: 1px solid var(--blue);
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-add:active {
+            background: var(--blue);
+            color: #000;
+        }
+
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #001a2e;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid var(--blue);
+            box-sizing: border-box;
+            z-index: 100;
+        }
+
+        .total-info { display: flex; flex-direction: column; }
+        .total-label { font-size: 12px; color: #888; }
+        .total-price { font-size: 20px; font-weight: bold; color: var(--blue); }
+
+        .btn-checkout {
+            background: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="jack-head"></div>
-    <h1>JSNETWORKS-jack</h1>
-    <label>Cliente</label>
-    <input type="text" placeholder="Nombre">
-    <label>Servicio / Perfil</label>
-    <textarea rows="2" placeholder="Ej: Netflix Perfil 1"></textarea>
-    <div class="info-row">
-        <span>VENCE: <strong>10/06/2026</strong></span>
-        <span>DÍAS: <strong>30</strong></span>
+
+<header>
+    <div class="logo-placeholder"><i class="fas fa-ghost"></i></div>
+    <h1 style="margin:0; font-size: 1.4rem; letter-spacing: 3px; color: var(--blue);">JSNETWORKS</h1>
+    <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">TIENDA OFICIAL</p>
+</header>
+
+<div class="container" id="catalog"></div>
+
+<div class="cart-bar">
+    <div class="total-info">
+        <span class="total-label">TU PEDIDO:</span>
+        <span class="total-price">$<span id="total">0</span></span>
     </div>
-    <button class="btn btn-ws">Enviar por WhatsApp</button>
-    <button class="btn btn-pay">Cobrar Servicio</button>
+    <a href="#" class="btn-checkout" onclick="sendWhatsApp()">
+        <i class="fab fa-whatsapp"></i> COMPRAR
+    </a>
 </div>
+
+<script>
+    const products = [
+        { name: "HBO + Disney", price: 14000, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg" },
+        { name: "HBO + Prime", price: 10000, img: "https://i.blogs.es/1608d1/prime-video-max/1366_2000.jpeg" },
+        { name: "Netflix 1 Disp", price: 6000, img: "https://variety.com/wp-content/uploads/2020/05/netflix-logo.png" },
+        { name: "Disney+ Premium", price: 5000, img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f44445346633f5ca97412f0534a7a8.png" },
+        { name: "HBO Max 1 Disp", price: 5000, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
+        { name: "Amazon Prime", price: 6000, img: "https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png" },
+        { name: "VIX Plus Full", price: 4000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6A7TzK6D_J9mS-vT_z6v8xO-u7W3X7i8z9w&s" },
+        { name: "Paramount+ Full", price: 6000, img: "https://www.paramountplus.com/thumbnails/vms/files/2021/02/10/0s0S0S0S0S0S0S0S0S0S0S0S0S0S0S0S.jpg" },
+        { name: "Internet 30 Días", price: 10000, img: "https://play-lh.googleusercontent.com/I76Pz7_Yyv_O8Xp0X7h1O9z_u8W6b_j_O8Xp0X7h1O9z_u8W6b_j_O8Xp0X7h1O9z_u8W" },
+        { name: "Free Fire 520 💎", price: 8000, img: "https://i.pinimg.com/736x/8d/8a/8d/8d8a8d1b1b1b1b1b1b1b1b1b1b1b1b1b.jpg" }
+    ];
+
+    let cart = [];
+    let total = 0;
+
+    function render() {
+        const catalog = document.getElementById('catalog');
+        products.forEach((p, i) => {
+            catalog.innerHTML += `
+                <div class="product-card">
+                    <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150/111/00d4ff?text=JS'">
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-price">$${p.price.toLocaleString()}</div>
+                        <button class="btn-add" onclick="addToCart(${i})">AÑADIR</button>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function addToCart(i) {
+        cart.push(products[i]);
+        total += products[i].price;
+        document.getElementById('total').innerText = total.toLocaleString();
+    }
+
+    function sendWhatsApp() {
+        if (cart.length === 0) return alert("Seleccioná un servicio primero");
+        let msg = "¡Hola *JSNETWORKS*! 👋 Quiero contratar:%0A%0A";
+        cart.forEach(p => msg += `🔹 *${p.name}* - $${p.price.toLocaleString()}%0A`);
+        msg += `%0A💰 *TOTAL: $${total.toLocaleString()}*%0A%0A¿Cuáles son los medios de pago?`;
+        window.open(`https://wa.me/5491134361679?text=${msg}`);
+    }
+
+    render();
+</script>
 </body>
 </html>
