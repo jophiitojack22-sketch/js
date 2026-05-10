@@ -1,4 +1,15 @@
-     .card[data-popular="true"] {
-        border: 2px solid var(--cyan);
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+     function render(data = products) {
+        const catalog = document.getElementById('catalog');
+        catalog.innerHTML = '';
+        data.forEach((p, i) => {
+            catalog.innerHTML += `
+                <div class="card" ${p.popular ? 'data-popular="true"' : ''}>
+                    <img src="${p.img}" class="card-img">
+                    <div class="card-info">
+                        <div class="card-title">${p.n}</div>
+                        <div class="card-price">$${p.p.toLocaleString()}</div>
+                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
+                    </div>
+                </div>`;
+        });
     }
