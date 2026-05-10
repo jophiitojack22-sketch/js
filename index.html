@@ -3,44 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSNETWORKS - Catálogo Digital</title>
+    <title>JSNETWORKS - Tienda Oficial</title>
     <style>
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #141414; }
-        body { background: var(--oscuro); color: white; font-family: 'Arial', sans-serif; margin: 0; padding: 0; }
+        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         
         /* HEADER CON LOGO DE JACK */
-        .header { padding: 40px 20px; text-align: center; background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%); }
+        .header { padding: 30px 20px; background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
         .header-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
-        .tienda-nombre { font-size: 30px; font-weight: 900; margin-top: 15px; letter-spacing: 3px; color: white; text-transform: uppercase; }
+        .tienda-nombre { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
 
-        /* SECCIONES */
-        .seccion-titulo { color: var(--magenta); text-transform: uppercase; margin: 30px 20px 10px; border-left: 5px solid var(--magenta); padding-left: 15px; font-size: 16px; font-weight: bold; letter-spacing: 1px; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 15px; padding: 0 20px 40px; max-width: 1100px; margin: 0 auto; }
+        /* SECCIONES ESTILO LUU */
+        .seccion-titulo { color: var(--magenta); text-transform: uppercase; font-size: 16px; letter-spacing: 2px; margin: 30px 20px 10px; text-align: left; border-left: 4px solid var(--magenta); padding-left: 10px; }
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* TARJETA VERTICAL PREMIUM */
+        /* TARJETAS VERTICALES */
         .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; }
         .card:hover { border-color: var(--cian); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
-        
-        .img-box { width: 100%; height: 240px; position: relative; overflow: hidden; }
+        .img-container { width: 100%; height: 230px; position: relative; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--cian); padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid var(--cian); }
 
-        .card-body { padding: 15px; text-align: left; background: #121212; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 10px; color: #fff; line-height: 1.2; }
+        .card-body { padding: 15px; text-align: left; flex-grow: 1; }
+        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 8px; color: white; height: 40px; overflow: hidden; }
         .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; }
 
-        /* BOTÓN COMPRAR */
-        .btn-add { background: var(--magenta); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 12px; transition: 0.2s; }
+        /* BOTONES */
+        .btn-add { background: var(--magenta); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
         .btn-add:hover { filter: brightness(1.2); box-shadow: 0 0 10px var(--magenta); }
 
         /* CARRITO FLOTANTE */
-        .flotante { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--cian); color: black; padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); width: 80%; max-width: 400px; text-align: center; }
+        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo" alt="JSNETWORKS">
+        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo" alt="Logo JSNETWORKS">
         <div class="tienda-nombre">JSNETWORKS</div>
     </div>
 
@@ -50,8 +49,11 @@
     <div class="seccion-titulo">Cuentas Streaming</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div style="height: 100px;"></div> <div class="flotante" onclick="enviarPedido()">
-        🛒 VER MI PEDIDO: $<span id="total-text">0</span>
+    <div class="seccion-titulo">Combos Promocionales</div>
+    <div id="cat-combos" class="catalogar"></div>
+
+    <div class="flotacion" onclick="enviarPedido()">
+        🛒 PEDIR POR WHATSAPP: $<span id="total-text">0</span>
     </div>
 
     <script>
@@ -64,8 +66,10 @@
             // STREAMING
             { cat: "streaming", n: "Netflix Premium 4K", p: 7500, b: "NETFLIX", img: "https://www.the-sun.com/wp-content/uploads/sites/6/2022/02/TM_Netflix-Explainer_OFF-1.jpg" },
             { cat: "streaming", n: "Disney+ Premium", p: 4800, b: "DISNEY+", img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f9d149f1165a6c382f7c65330e0600.png" },
-            { cat: "streaming", n: "HBO Max Premium", p: 4500, b: "HBO MAX", img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
-            { cat: "streaming", n: "Combo 4 en 1", p: 16400, b: "OFERTA", img: "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg" }
+            { cat: "streaming", n: "HBO Max / Max", p: 4500, b: "HBO MAX", img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
+            
+            // COMBOS
+            { cat: "combos", n: "Combo 4 en 1 Premium", p: 16400, b: "OFERTA", img: "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg" }
         ];
 
         let total = 0;
@@ -77,14 +81,14 @@
                 if(contenedor) {
                     contenedor.innerHTML += `
                     <div class="card">
-                        <div class="img-box">
+                        <div class="img-container">
                             <div class="badge">${p.b}</div>
-                            <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/200x300?text=Servicio'">
+                            <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/200x300?text=Cargando...'">
                         </div>
                         <div class="card-body">
                             <div class="card-title">${p.n}</div>
                             <div class="card-price">$${p.p.toLocaleString('es-AR')}</div>
-                            <button class="btn-add" onclick="agregar(${i})">Comprar</button>
+                            <button class="btn-add" onclick="agregar(${i})">Añadir al pedido</button>
                         </div>
                     </div>`;
                 }
@@ -98,10 +102,10 @@
         }
 
         function enviarPedido() {
-            if(carrito.length === 0) return alert("Elegí algo primero, Jack.");
+            if(carrito.length === 0) return alert("Elegí un servicio primero.");
             let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar:%0A%0A`;
             carrito.forEach(p => msg += `✅ ${p.n} ($${p.p})%0A`);
-            msg += `%0A💰 TOTAL: $${total}`;
+            msg += `%0A💰 TOTAL: $${total.toLocaleString('es-AR')}`;
             window.open(`https://wa.me/5491134361679?text=${msg}`);
         }
         render();
