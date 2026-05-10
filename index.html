@@ -5,75 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSNETWORKS - Catálogo</title>
     <style>
-        /* Aquí va tu diseño CSS (el que tiene los colores neón y las tarjetas) */
-        :root { --cyan: #00d4ff; --dark: #0a0a0a; }
-        body { background: var(--dark); color: white; font-family: sans-serif; padding: 20px; }
-        .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        :root { --cian: #00d4ff; --oscuro: #0a0a0a; }
+        body { background: var(--oscuro); color: white; font-family: sans-serif; padding: 20px; }
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .card { background: #1a1a1a; border-radius: 10px; padding: 15px; border: 1px solid #333; text-align: center; }
-        .card[data-popular="true"] { border-color: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
+        .card[data-popular="true"] { border-color: var(--cian); box-shadow: 0 0 15px var(--cian); }
         .card-img { width: 100%; border-radius: 8px; height: 150px; object-fit: cover; }
-        .btn-add { background: var(--cyan); border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
-        .cart-float { position: fixed; bottom: 20px; right: 20px; background: var(--cyan); color: black; padding: 15px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+        .btn-add { background: var(--cian); border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
+        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px; border-radius: 50px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <h1 style="text-align: center; color: var(--cyan);">JSNETWORKS</h1>
+    <h1 style="text-align: center; color: var(--cian);">JSNETWORKS</h1>
     <input type="text" id="searchInput" placeholder="Buscar servicio..." onkeyup="filterProducts()" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: none;">
     
-    <div id="catalog" class="catalog"></div>
+    <div id="catalogar" class="catalogar"></div>
 
-    <div class="cart-float" onclick="sendOrder()">
+    <div class="flotacion" onclick="sendOrder()">
         🛒 TOTAL: $<span id="total-text">0</span>
     </div>
 
     <script>
         const productos = [
-            { n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", popular: true, desc: "Código Downloader: 7169428" },
-            { n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", desc: "7d: $7.000 | 15d: $11.000 | 30d: $13.500" },
-            { n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", desc: "TikTok y Redes sin gastar tus megas" },
-            { n: "🎁 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg", desc: "Netflix + Disney + HBO + Prime" }
+            { norte: "⚡ LURZAVIC - PRUEBA 3 HORAS", pag: 0, imagen: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", popular: true, descripcion: "Código Downloader: 7169428. ¡Probá ahora!" },
+            { norte: "📶 LURZAVIC - 2 DISP (TV+Cel)", pag: 13500, imagen: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", descripcion: "7d: $7.000 | 15d: $11.000 | 30d: $13.500" },
+            { norte: "🚀 Internet CEL (30 Días)", pag: 10000, imagen: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", descripcion: "TikTok y Redes sin gastar tus megas" },
+            { norte: "🎁 COMBOS PREMIUM 4 EN 1", pag: 16400, imagen: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg", descripcion: "Netflix + Disney + HBO + Prime" }
         ];
 
         let carrito = [];
         let total = 0;
 
-        function render(data = productos) {
-            const catalog = document.getElementById('catalog');
-            catalog.innerHTML = '';
-            data.forEach((prod, i) => {
-                catalog.innerHTML += `
+        function prestar(datos = productos) {
+            const catalogar = document.getElementById('catalogar');
+            catalogar.innerHTML = '';
+            datos.forEach((prod, i) => {
+                catalogar.innerHTML += `
                     <div class="card" ${prod.popular ? 'data-popular="true"' : ''}>
-                        <img src="${prod.img}" class="card-img">
-                        <h3>${prod.n}</h3>
-                        <p style="font-size: 12px; color: #aaa;">${prod.desc}</p>
-                        <p style="color: var(--cyan); font-weight: bold;">$${prod.p.toLocaleString()}</p>
-                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
+                        <img src="${prod.imagen}" class="card-img">
+                        <h3>${prod.norte}</h3>
+                        <p style="font-size: 12px; color: #aaa;">${prod.descripcion}</p>
+                        <p style="color: var(--cian); font-weight: bold;">$${prod.pag.toLocaleString()}</p>
+                        <button class="btn-add" onclick="agregar(${i})">AÑADIR</button>
                     </div>`;
             });
         }
 
-        function add(i) {
+        function agregar(i) {
             carrito.push(productos[i]);
-            total += productos[i].p;
+            total += productos[i].pag;
             document.getElementById('total-text').innerText = total.toLocaleString();
         }
 
         function filterProducts() {
             const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = productos.filter(p => p.n.toLowerCase().includes(term));
-            render(filtered);
+            const filtrado = productos.filter(p => p.norte.toLowerCase().includes(term));
+            prestar(filtrado);
         }
 
         function sendOrder() {
             if(carrito.length === 0) return alert("Elegí un servicio primero");
             let msg = `¡Hola *JSNETWORKS*! 👋 Quiero contratar:%0A%0A`;
-            carrito.forEach(p => msg += `✅ *${p.n}* - $${p.p.toLocaleString()}%0A`);
+            carrito.forEach(p => msg += `✅ *${p.norte}* - $${p.pag.toLocaleString()}%0A`);
             msg += `%0A💰 *TOTAL: $${total.toLocaleString()}*`;
             window.open(`https://wa.me/5491134361679?text=${msg}`);
         }
 
-        render();
+        prestar();
     </script>
 </body>
 </html>
