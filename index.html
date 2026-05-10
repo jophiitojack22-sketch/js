@@ -58,4 +58,45 @@
             { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $7.000", "3 Disp ➝ $14.000"] },
             { cat: "streaming", nombre: "Amazon Prime Video", img: "https://images.unsplash.com/photo-1585647347384-2593bcc357d3?w=400", opciones: ["1 Disp ➝ $4.000", "2 Disp ➝ $6.500"] },
             { cat: "streaming", nombre: "HBO Max", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $8.000"] },
-            { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["3
+            { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["30 Días ➝ $3.000"] },
+            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800", "60 Días ➝ $5.400"] },
+            { cat: "streaming", nombre: "Paramount+", img: "https://images.unsplash.com/photo-1627873649417-c67f701f1949?w=400", opciones: ["1 Mes ➝ $3.600"] },
+            { cat: "streaming", nombre: "Crunchyroll", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["30 Días ➝ $4.000"] },
+            { cat: "otros", nombre: "Internet Ilimitado (VPN)", img: "https://i.ibb.co/L6S8tG0/internet-vph.jpg", opciones: ["30 Días ➝ $10.000", "Prueba Gratis"] },
+            { cat: "otros", nombre: "Free Fire 💎", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["Consultar Packs"] }
+        ];
+
+        let pedidoFinal = "";
+
+        function render() {
+            productos.forEach((p, i) => {
+                const cont = document.getElementById(`cat-${p.cat}`);
+                let opts = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
+                cont.innerHTML += `
+                    <div class="card">
+                        <div class="img-container"><img src="${p.img}" class="card-img"></div>
+                        <div class="card-body">
+                            <div class="card-title">${p.nombre}</div>
+                            <select id="s-${i}" class="selector-opciones">${opts}</select>
+                            <button class="btn-comprar" onclick="pedir(${i})">Comprar</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function pedir(i) {
+            pedidoFinal = `🛒 *${productos[i].nombre}*%0A📍 *${document.getElementById('s-'+i).value}*`;
+            document.getElementById('modal-nombre').style.display = 'flex';
+        }
+
+        function enviarPedido() {
+            const nom = document.getElementById('input-nombre').value;
+            if(!nom) return alert("Por favor, poné tu nombre.");
+            window.open(`https://wa.me/5491134361679?text=¡Hola JACK! 💀%0A%0ASoy: *${nom}*%0AQuiero: ${pedidoFinal}`);
+            document.getElementById('modal-nombre').style.display = 'none';
+        }
+
+        window.onload = render;
+    </script>
+</body>
+</html>
