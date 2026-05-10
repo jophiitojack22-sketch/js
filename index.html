@@ -8,13 +8,15 @@
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; margin: 0; }
         
+        /* LOGOTIPO Y CABECERA */
         .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); margin-bottom: 10px; }
         .tienda-nombre { color: var(--cian); margin: 0; font-size: 28px; text-transform: uppercase; text-shadow: 0 0 10px var(--cian); }
 
+        /* SECCIONES */
         .seccion-titulo { color: var(--magenta); text-transform: uppercase; letter-spacing: 3px; font-size: 18px; text-shadow: 0 0 10px var(--magenta); margin: 40px 0 20px; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
-        /* TARJETA VISUAL PREMIUM */
+        /* TARJETA ESTILO PREMIUM */
         .card { 
             position: relative; background-size: cover; background-position: center; 
             border-radius: 15px; min-height: 420px; border: 1px solid #333; 
@@ -55,16 +57,16 @@
     <script>
         const productos = [
             // LURZAVIC
-            { cat: "lurzavic", n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", d: "TV + Celular. Probá la potencia ahora!" },
-            { cat: "lurzavic", n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", d: "30 días: $13.500. Smart TV y Android." },
-            { cat: "lurzavic", n: "📶 LURZAVIC - 3 DISPOSITIVOS", p: 17000, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", d: "30 días: $17.000. Ideal para la familia." },
+            { cat: "lurzavic", n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", d: "Prueba gratuita para Smart TV y Celular." },
+            { cat: "lurzavic", n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", d: "Conexión estable para 2 dispositivos." },
+            { cat: "lurzavic", n: "📶 LURZAVIC - 3 DISPOSITIVOS", p: 17000, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", d: "Internet ilimitado para toda la casa." },
             
             // PERSONAL
-            { cat: "personal", n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", d: "TikTok y Redes sin gastar megas." },
+            { cat: "personal", n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", d: "Navegación ilimitada sin límites de gigas." },
             
             // COMBOS
-            { cat: "combos", n: "🍿 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9307-02b608fd4eb.jpg", d: "Netflix + Disney + HBO + Prime." },
-            { cat: "combos", n: "🍿 COMBOS 3 SERVICIOS", p: 9400, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png", d: "Netflix + Disney + HBO/Prime. Desde $9.400." }
+            { cat: "combos", n: "🍿 COMBO PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9307-02b608fd4eb.jpg", d: "Netflix + Disney + HBO + Prime Video." },
+            { cat: "combos", n: "🍿 COMBO 3 SERVICIOS", p: 9400, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png", d: "Tu elección de 3 plataformas favoritas." }
         ];
 
         let total = 0;
@@ -94,7 +96,7 @@
         }
 
         function enviarPedido() {
-            if(carrito.length === 0) return alert("Elegí un servicio primero");
+            if(carrito.length === 0) return alert("Selecciona un servicio primero");
             let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar:%0A`;
             carrito.forEach(p => msg += `✅ ${p.n} - $${p.p}%0A`);
             msg += `%0A💰 TOTAL: $${total.toLocaleString('es-AR')}`;
