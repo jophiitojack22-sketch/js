@@ -3,75 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSNETWORKS - Tienda Oficial</title>
+    <title>JSNETWORKS - Catálogo Digital</title>
     <style>
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #141414; }
-        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        body { background: var(--oscuro); color: white; font-family: 'Arial', sans-serif; margin: 0; padding: 0; }
         
-        /* HEADER */
-        .header { padding: 30px; text-align: center; background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
-        .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); }
-        .tienda-nombre { font-size: 24px; font-weight: bold; margin-top: 10px; letter-spacing: 2px; }
+        /* HEADER CON LOGO DE JACK */
+        .header { padding: 40px 20px; text-align: center; background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%); }
+        .header-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
+        .tienda-nombre { font-size: 30px; font-weight: 900; margin-top: 15px; letter-spacing: 3px; color: white; text-transform: uppercase; }
 
         /* SECCIONES */
-        .seccion-titulo { color: var(--magenta); text-transform: uppercase; margin: 30px 20px 10px; border-left: 4px solid var(--magenta); padding-left: 10px; font-size: 14px; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; }
+        .seccion-titulo { color: var(--magenta); text-transform: uppercase; margin: 30px 20px 10px; border-left: 5px solid var(--magenta); padding-left: 15px; font-size: 16px; font-weight: bold; letter-spacing: 1px; }
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 15px; padding: 0 20px 40px; max-width: 1100px; margin: 0 auto; }
 
-        /* TARJETAS */
-        .card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #222; transition: 0.3s; position: relative; }
-        .card:hover { border-color: var(--cian); transform: translateY(-5px); }
-        .img-box { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 15px; text-align: left; }
-        .card-title { font-size: 14px; font-weight: bold; margin-bottom: 5px; height: 35px; overflow: hidden; }
-        .card-price { font-size: 18px; color: var(--cian); font-weight: 800; }
+        /* TARJETA VERTICAL PREMIUM */
+        .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--cian); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
+        
+        .img-box { width: 100%; height: 240px; position: relative; overflow: hidden; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; }
+        .badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--cian); padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid var(--cian); }
 
-        /* BOTONES */
-        .btn-add { background: var(--cian); color: black; border: none; width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; font-weight: bold; cursor: pointer; }
-        .flotante { position: fixed; bottom: 20px; right: 20px; background: var(--magenta); color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 15px var(--magenta); }
+        .card-body { padding: 15px; text-align: left; background: #121212; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 10px; color: #fff; line-height: 1.2; }
+        .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; }
+
+        /* BOTÓN COMPRAR */
+        .btn-add { background: var(--magenta); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 12px; transition: 0.2s; }
+        .btn-add:hover { filter: brightness(1.2); box-shadow: 0 0 10px var(--magenta); }
+
+        /* CARRITO FLOTANTE */
+        .flotante { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--cian); color: black; padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); width: 80%; max-width: 400px; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo" alt="Jack">
+        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo" alt="JSNETWORKS">
         <div class="tienda-nombre">JSNETWORKS</div>
     </div>
 
-    <div class="seccion-titulo">Internet Ilimitado & Lurzavic</div>
+    <div class="seccion-titulo">Internet Lurzavic & Móvil</div>
     <div id="cat-internet" class="catalogar"></div>
 
     <div class="seccion-titulo">Cuentas Streaming</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="flotante" onclick="enviarPedido()">
-        🛒 PEDIR POR WHATSAPP ($<span id="total-text">0</span>)
+    <div style="height: 100px;"></div> <div class="flotante" onclick="enviarPedido()">
+        🛒 VER MI PEDIDO: $<span id="total-text">0</span>
     </div>
 
     <script>
         const productos = [
-            { cat: "internet", n: "Lurzavic Prueba 3H", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratis_24911-47451.jpg" },
-            { cat: "internet", n: "Internet Móvil VPN", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet_24911-47000.jpg" },
-            { cat: "streaming", n: "Netflix Premium 4K", p: 7500, img: "https://geizhals.at/magazin/wp-content/uploads/2019/11/netflix-logo.jpg" },
-            { cat: "streaming", n: "Disney+ Premium", p: 4800, img: "https://cnnespanol.cnn.com/wp-content/uploads/2019/04/disney-plus-logo.jpg?quality=100&strip=info" },
-            { cat: "streaming", n: "HBO Max / Max", p: 4500, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" }
+            // INTERNET
+            { cat: "internet", n: "Lurzavic Prueba 3H", p: 0, b: "PRUEBA", img: "https://images.pexels.com/photos/4050291/pexels-photo-4050291.jpeg" },
+            { cat: "internet", n: "Lurzavic 2 Disp (TV+Cel)", p: 13500, b: "SMART TV", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg" },
+            { cat: "internet", n: "Internet Móvil VPN", p: 10000, b: "CELULAR", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg" },
+            
+            // STREAMING
+            { cat: "streaming", n: "Netflix Premium 4K", p: 7500, b: "NETFLIX", img: "https://www.the-sun.com/wp-content/uploads/sites/6/2022/02/TM_Netflix-Explainer_OFF-1.jpg" },
+            { cat: "streaming", n: "Disney+ Premium", p: 4800, b: "DISNEY+", img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f9d149f1165a6c382f7c65330e0600.png" },
+            { cat: "streaming", n: "HBO Max Premium", p: 4500, b: "HBO MAX", img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
+            { cat: "streaming", n: "Combo 4 en 1", p: 16400, b: "OFERTA", img: "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg" }
         ];
 
         let total = 0;
         let carrito = [];
 
-        function mostrar() {
+        function render() {
             productos.forEach((p, i) => {
-                const caja = document.getElementById(`cat-${p.cat}`);
-                if (caja) {
-                    caja.innerHTML += `
-                        <div class="card">
-                            <img src="${p.img}" class="img-box">
-                            <div class="card-body">
-                                <div class="card-title">${p.n}</div>
-                                <div class="card-price">$${p.p.toLocaleString()}</div>
-                                <button class="btn-add" onclick="agregar(${i})">AÑADIR AL PEDIDO</button>
-                            </div>
-                        </div>`;
+                const contenedor = document.getElementById(`cat-${p.cat}`);
+                if(contenedor) {
+                    contenedor.innerHTML += `
+                    <div class="card">
+                        <div class="img-box">
+                            <div class="badge">${p.b}</div>
+                            <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/200x300?text=Servicio'">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">${p.n}</div>
+                            <div class="card-price">$${p.p.toLocaleString('es-AR')}</div>
+                            <button class="btn-add" onclick="agregar(${i})">Comprar</button>
+                        </div>
+                    </div>`;
                 }
             });
         }
@@ -79,18 +94,17 @@
         function agregar(i) {
             carrito.push(productos[i]);
             total += productos[i].p;
-            document.getElementById('total-text').innerText = total.toLocaleString();
+            document.getElementById('total-text').innerText = total.toLocaleString('es-AR');
         }
 
         function enviarPedido() {
-            if(carrito.length === 0) return alert("Elegí un servicio primero");
-            let texto = "¡Hola JSNETWORKS! 👋 Quiero contratar:%0A";
-            carrito.forEach(p => texto += `- ${p.n} ($${p.p})%0A`);
-            texto += "%0A💰 TOTAL: $" + total;
-            window.open("https://wa.me/5491134361679?text=" + texto);
+            if(carrito.length === 0) return alert("Elegí algo primero, Jack.");
+            let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar:%0A%0A`;
+            carrito.forEach(p => msg += `✅ ${p.n} ($${p.p})%0A`);
+            msg += `%0A💰 TOTAL: $${total}`;
+            window.open(`https://wa.me/5491134361679?text=${msg}`);
         }
-
-        mostrar();
+        render();
     </script>
 </body>
 </html>
