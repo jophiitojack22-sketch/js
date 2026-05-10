@@ -8,22 +8,22 @@
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; margin: 0; }
         
-        /* CABECERA Y LOGOTIPO */
+        /* CABECERA ESTILO NEÓN */
         .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); margin-bottom: 10px; }
         .tienda-nombre { color: var(--cian); margin: 0; font-size: 28px; text-transform: uppercase; text-shadow: 0 0 10px var(--cian); }
 
-        /* SECCIONES */
+        /* SECCIONES Y GRILLA */
         .seccion-titulo { color: var(--magenta); text-transform: uppercase; letter-spacing: 3px; font-size: 18px; text-shadow: 0 0 10px var(--magenta); margin: 40px 0 20px; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
-        /* TARJETA ESTILO LUU STREAM */
+        /* TARJETA VISUAL PREMIUM */
         .card { 
             position: relative; background-size: cover; background-position: center; 
             border-radius: 15px; min-height: 420px; border: 1px solid #333; 
             overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; 
-            transition: transform 0.3s;
+            transition: transform 0.3s, border-color 0.3s;
         }
-        .card:hover { transform: scale(1.02); border-color: var(--cian); }
+        .card:hover { transform: translateY(-5px); border-color: var(--cian); }
         .card-overlay { 
             position: absolute; bottom: 0; left: 0; right: 0; top: 35%;
             background: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
@@ -46,7 +46,7 @@
     <div class="seccion-titulo">Mundo Entretenimiento</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="seccion-titulo">Internet Ilimitado (Smart TV y Cel)</div>
+    <div class="seccion-titulo">Internet Ilimitado</div>
     <div id="cat-internet" class="catalogar"></div>
 
     <div class="flotacion" onclick="sendOrder()">🛒 TOTAL: $<span id="total-text">0</span></div>
@@ -54,9 +54,51 @@
     <script>
         const productos = [
             // --- SECCIÓN ENTRETENIMIENTO ---
-            { s: "streaming", n: "NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600", d: "Cuentas 4K HDR. Disfruta los mejores estrenos." },
-            { s: "streaming", n: "DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?w=600", d: "Todo el contenido de Disney y Star+." },
-            { s: "streaming", n: "HBO MAX / MAX", p: 4500, img: "https://images.unsplash.com/photo-1623038662991-3829ffdf009b?w=600", d: "Series exclusivas y cine de Warner Bros." },
+            { s: "streaming", n: "NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600", d: "Cuentas 4K HDR. Pantallas privadas." },
+            { s: "streaming", n: "DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?w=600", d: "Star+ y clásicos incluidos." },
+            { s: "streaming", n: "HBO MAX / MAX", p: 4500, img: "https://images.unsplash.com/photo-1623038662991-3829ffdf009b?w=600", d: "Estrenos de cine y series originales." },
             
             // --- SECCIÓN INTERNET ---
-            { s: "internet", n: "LURZAVIC Smart TV", p: 13500, img: "
+            { s: "internet", n: "LURZAVIC Smart TV", p: 13500, img: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600", d: "Internet ilimitado para TV Box y Android TV." },
+            { s: "internet", n: "Internet CEL (VPN)", p: 10000, img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=600", d: "Navegación total sin gastar tus gigas." }
+        ];
+
+        let total = 0;
+        let carrito = [];
+
+        function render() {
+            const st = document.getElementById('cat-streaming');
+            const it = document.getElementById('cat-internet');
+            productos.forEach((p, i) => {
+                const html = `
+                <div class="card" style="background-image: url('${p.img}')">
+                    <div class="card-overlay"></div>
+                    <div class="card-info">
+                        <div class="card-title">${p.n}</div>
+                        <div class="card-desc">${p.d}</div>
+                        <div class="card-price">$${p.p.toLocaleString('es-AR')}</div>
+                        <button class="btn-add" onclick="add(${i})">AÑADIR AL PEDIDO</button>
+                    </div>
+                </div>`;
+                if(p.s === "streaming") st.innerHTML += html;
+                else it.innerHTML += html;
+            });
+        }
+
+        function add(i) {
+            carrito.push(productos[i]);
+            total += productos[i].p;
+            document.getElementById('total-text').innerText = total.toLocaleString('es-AR');
+        }
+
+        function sendOrder() {
+            if(carrito.length === 0) return alert("Selecciona un servicio primero");
+            let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar estos servicios:%0A`;
+            carrito.forEach(p => msg += `✅ ${p.n}%0A`);
+            msg += `%0A💰 TOTAL: $${total.toLocaleString('es-AR')}`;
+            window.open(`https://wa.me/5491134361679?text=${msg}`);
+        }
+        render();
+    </script>
+</body>
+</html>
