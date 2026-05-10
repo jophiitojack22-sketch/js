@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSNETWORKS - Tu Mundo Digital</title>
+    <title>JSNETWORKS - Catálogo</title>
     <style>
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; margin: 0; }
         
-        /* CABECERA ESTILO NEÓN */
         .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); margin-bottom: 10px; }
         .tienda-nombre { color: var(--cian); margin: 0; font-size: 28px; text-transform: uppercase; text-shadow: 0 0 10px var(--cian); }
 
-        /* SECCIONES Y GRILLA */
         .seccion-titulo { color: var(--magenta); text-transform: uppercase; letter-spacing: 3px; font-size: 18px; text-shadow: 0 0 10px var(--magenta); margin: 40px 0 20px; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
@@ -21,7 +19,7 @@
             position: relative; background-size: cover; background-position: center; 
             border-radius: 15px; min-height: 420px; border: 1px solid #333; 
             overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; 
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s;
         }
         .card:hover { transform: translateY(-5px); border-color: var(--cian); }
         .card-overlay { 
@@ -30,9 +28,9 @@
             z-index: 1;
         }
         .card-info { position: relative; z-index: 2; padding: 20px; text-align: left; }
-        .card-title { font-size: 22px; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px black; }
-        .card-desc { font-size: 13px; color: #ddd; margin: 5px 0; line-height: 1.4; }
-        .card-price { font-size: 24px; color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian); }
+        .card-title { font-size: 20px; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px black; }
+        .card-desc { font-size: 12px; color: #ddd; margin: 5px 0; line-height: 1.4; }
+        .card-price { font-size: 22px; color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian); }
 
         .btn-add { background: var(--cian); border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; color: black; margin-top: 10px; text-transform: uppercase; }
         .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--magenta); color: black; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 15px var(--magenta); }
@@ -40,36 +38,41 @@
 </head>
 <body>
 
-    <img src="https://img.freepik.com/vector-premium/mascota-esports-jugador-auriculares-microfono_157713-3.jpg" class="header-logo" alt="Jack">
+    <img src="https://img.freepik.com/vector-premium/logotipo-deportes-electronicos-jugador-auriculares_157713-10.jpg" class="header-logo" alt="Logo">
     <h1 class="tienda-nombre">JSNETWORKS</h1>
     
-    <div class="seccion-titulo">Mundo Entretenimiento</div>
-    <div id="cat-streaming" class="catalogar"></div>
+    <div class="seccion-titulo">Internet Lurzavic (TV + Cel)</div>
+    <div id="cat-lurzavic" class="catalogar"></div>
 
-    <div class="seccion-titulo">Internet Ilimitado</div>
-    <div id="cat-internet" class="catalogar"></div>
+    <div class="seccion-titulo">Internet Celular (Personal)</div>
+    <div id="cat-personal" class="catalogar"></div>
 
-    <div class="flotacion" onclick="sendOrder()">🛒 TOTAL: $<span id="total-text">0</span></div>
+    <div class="seccion-titulo">Combos Streaming</div>
+    <div id="cat-combos" class="catalogar"></div>
+
+    <div class="flotacion" onclick="enviarPedido()">🛒 TOTAL: $<span id="total-text">0</span></div>
 
     <script>
         const productos = [
-            // --- SECCIÓN ENTRETENIMIENTO ---
-            { s: "streaming", n: "NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600", d: "Cuentas 4K HDR. Pantallas privadas." },
-            { s: "streaming", n: "DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?w=600", d: "Star+ y clásicos incluidos." },
-            { s: "streaming", n: "HBO MAX / MAX", p: 4500, img: "https://images.unsplash.com/photo-1623038662991-3829ffdf009b?w=600", d: "Estrenos de cine y series originales." },
+            // LURZAVIC
+            { cat: "lurzavic", n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", d: "TV + Celular. Probá la potencia ahora!" },
+            { cat: "lurzavic", n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", d: "30 días: $13.500. Smart TV y Android." },
+            { cat: "lurzavic", n: "📶 LURZAVIC - 3 DISPOSITIVOS", p: 17000, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", d: "30 días: $17.000. Ideal para la familia." },
             
-            // --- SECCIÓN INTERNET ---
-            { s: "internet", n: "LURZAVIC Smart TV", p: 13500, img: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600", d: "Internet ilimitado para TV Box y Android TV." },
-            { s: "internet", n: "Internet CEL (VPN)", p: 10000, img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=600", d: "Navegación total sin gastar tus gigas." }
+            // PERSONAL
+            { cat: "personal", n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", d: "TikTok y Redes sin gastar megas." },
+            
+            // COMBOS
+            { cat: "combos", n: "🍿 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9307-02b608fd4eb.jpg", d: "Netflix + Disney + HBO + Prime." },
+            { cat: "combos", n: "🍿 COMBOS 3 SERVICIOS", p: 9400, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png", d: "Netflix + Disney + HBO/Prime. Desde $9.400." }
         ];
 
         let total = 0;
         let carrito = [];
 
         function render() {
-            const st = document.getElementById('cat-streaming');
-            const it = document.getElementById('cat-internet');
             productos.forEach((p, i) => {
+                const contenedor = document.getElementById(`cat-${p.cat}`);
                 const html = `
                 <div class="card" style="background-image: url('${p.img}')">
                     <div class="card-overlay"></div>
@@ -77,24 +80,23 @@
                         <div class="card-title">${p.n}</div>
                         <div class="card-desc">${p.d}</div>
                         <div class="card-price">$${p.p.toLocaleString('es-AR')}</div>
-                        <button class="btn-add" onclick="add(${i})">AÑADIR AL PEDIDO</button>
+                        <button class="btn-add" onclick="agregar(${i})">AÑADIR AL PEDIDO</button>
                     </div>
                 </div>`;
-                if(p.s === "streaming") st.innerHTML += html;
-                else it.innerHTML += html;
+                if(contenedor) contenedor.innerHTML += html;
             });
         }
 
-        function add(i) {
+        function agregar(i) {
             carrito.push(productos[i]);
             total += productos[i].p;
             document.getElementById('total-text').innerText = total.toLocaleString('es-AR');
         }
 
-        function sendOrder() {
-            if(carrito.length === 0) return alert("Selecciona un servicio primero");
-            let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar estos servicios:%0A`;
-            carrito.forEach(p => msg += `✅ ${p.n}%0A`);
+        function enviarPedido() {
+            if(carrito.length === 0) return alert("Elegí un servicio primero");
+            let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar:%0A`;
+            carrito.forEach(p => msg += `✅ ${p.n} - $${p.p}%0A`);
             msg += `%0A💰 TOTAL: $${total.toLocaleString('es-AR')}`;
             window.open(`https://wa.me/5491134361679?text=${msg}`);
         }
