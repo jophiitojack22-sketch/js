@@ -8,27 +8,30 @@
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; margin: 0; }
         
-        /* LOGOTIPO Y CABECERA */
+        /* CABECERA Y LOGOTIPO */
         .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); margin-bottom: 10px; }
         .tienda-nombre { color: var(--cian); margin: 0; font-size: 28px; text-transform: uppercase; text-shadow: 0 0 10px var(--cian); }
 
+        /* SECCIONES */
         .seccion-titulo { color: var(--magenta); text-transform: uppercase; letter-spacing: 3px; font-size: 18px; text-shadow: 0 0 10px var(--magenta); margin: 40px 0 20px; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
-        /* TARJETA ESTILO LUU STREAM (Imagen de Fondo) */
+        /* TARJETA ESTILO LUU STREAM */
         .card { 
             position: relative; background-size: cover; background-position: center; 
-            border-radius: 15px; min-height: 400px; border: 1px solid #333; 
+            border-radius: 15px; min-height: 420px; border: 1px solid #333; 
             overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; 
+            transition: transform 0.3s;
         }
+        .card:hover { transform: scale(1.02); border-color: var(--cian); }
         .card-overlay { 
-            position: absolute; bottom: 0; left: 0; right: 0; top: 40%;
-            background: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+            position: absolute; bottom: 0; left: 0; right: 0; top: 35%;
+            background: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
             z-index: 1;
         }
         .card-info { position: relative; z-index: 2; padding: 20px; text-align: left; }
         .card-title { font-size: 22px; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px black; }
-        .card-desc { font-size: 13px; color: #ddd; margin: 5px 0; }
+        .card-desc { font-size: 13px; color: #ddd; margin: 5px 0; line-height: 1.4; }
         .card-price { font-size: 24px; color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian); }
 
         .btn-add { background: var(--cian); border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; color: black; margin-top: 10px; text-transform: uppercase; }
@@ -40,21 +43,20 @@
     <img src="https://img.freepik.com/vector-premium/mascota-esports-jugador-auriculares-microfono_157713-3.jpg" class="header-logo" alt="Jack">
     <h1 class="tienda-nombre">JSNETWORKS</h1>
     
-    <div class="seccion-titulo">Entretenimiento</div>
+    <div class="seccion-titulo">Mundo Entretenimiento</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="seccion-titulo">Internet Ilimitado</div>
+    <div class="seccion-titulo">Internet Ilimitado (Smart TV y Cel)</div>
     <div id="cat-internet" class="catalogar"></div>
 
     <div class="flotacion" onclick="sendOrder()">🛒 TOTAL: $<span id="total-text">0</span></div>
 
     <script>
         const productos = [
-            // SECCIÓN ENTRETENIMIENTO
-            { s: "streaming", n: "NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600", d: "4K HDR - Cine en casa" },
-            { s: "streaming", n: "DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?w=600", d: "Star+ y clásicos incluidos" },
-            { s: "streaming", n: "HBO MAX / MAX", p: 4500, img: "https://images.unsplash.com/photo-1623038662991-3829ffdf009b?w=600", d: "Series originales y estrenos" },
+            // --- SECCIÓN ENTRETENIMIENTO ---
+            { s: "streaming", n: "NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600", d: "Cuentas 4K HDR. Disfruta los mejores estrenos." },
+            { s: "streaming", n: "DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?w=600", d: "Todo el contenido de Disney y Star+." },
+            { s: "streaming", n: "HBO MAX / MAX", p: 4500, img: "https://images.unsplash.com/photo-1623038662991-3829ffdf009b?w=600", d: "Series exclusivas y cine de Warner Bros." },
             
-            // SECCIÓN INTERNET (Celular y Smart TV)
-            { s: "internet", n: "LURZAVIC Smart TV", p: 13500, img: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600", d: "Internet ilimitado para TV Box" },
-            { s: "internet", n: "Internet CEL (VPN)", p: 10000, img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=600", d: "Naveg
+            // --- SECCIÓN INTERNET ---
+            { s: "internet", n: "LURZAVIC Smart TV", p: 13500, img: "
