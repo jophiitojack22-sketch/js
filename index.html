@@ -1,15 +1,33 @@
-     function render(data = products) {
-        const catalog = document.getElementById('catalog');
-        catalog.innerHTML = '';
-        data.forEach((p, i) => {
-            catalog.innerHTML += `
-                <div class="card" ${p.popular ? 'data-popular="true"' : ''}>
-                    <img src="${p.img}" class="card-img">
-                    <div class="card-info">
-                        <div class="card-title">${p.n}</div>
-                        <div class="card-price">$${p.p.toLocaleString()}</div>
-                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
-                    </div>
-                </div>`;
-        });
-    }
+     // --- NUEVA SECCIÓN: INTERNET TV + CELULAR (LUZRZAVIC) ---
+    { 
+        n: "📶 LUZRZAVIC - 2 DISP (TV + Cel)", 
+        p: 13500, 
+        img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
+        desc: "7 días: $7.000 | 15 días: $11.000 | 30 días: $13.500. Smart TV, TV Box y Android."
+    },
+    { 
+        n: "📶 LUZRZAVIC - 3 DISPOSITIVOS", 
+        p: 17000, 
+        img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
+        desc: "7 días: $8.500 | 15 días: $13.500 | 30 días: $17.000. Ideal para toda la casa."
+    },
+    { 
+        n: "📶 LUZRZAVIC - 4 DISPOSITIVOS", 
+        p: 20000, 
+        img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
+        popular: true,
+        desc: "7 días: $10.000 | 15 días: $16.000 | 30 días: $20.000. ¡La mejor opción!"
+    },
+    { 
+        n: "💥 OFERTA: 4 DISP - 2 MESES", 
+        p: 28000, 
+        img: "https://img.freepik.com/vector-premium/etiqueta-oferta-especial-roja_24877-50854.jpg",
+        popular: true,
+        desc: "Ahorro total por 60 días. ¡Garantía completa!"
+    },
+    { 
+        n: "⚡ LUZRZAVIC - PRUEBA 3 HORAS", 
+        p: 0, 
+        img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg",
+        desc: "Código Downloader: 7169428. Probá la velocidad en tu Smart TV ahora."
+    },
