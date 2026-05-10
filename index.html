@@ -5,120 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSNETWORKS - Tienda Oficial</title>
     <style>
-        :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --gris-card: #141414; }
-        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
+        :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #141414; }
+        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
-        /* HEADER CON LOGO DE JACK */
-        .header { padding: 40px 20px; background: linear-gradient(to bottom, #111, var(--oscuro)); }
-        .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
-        .tienda-nombre { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-top: 15px; color: white; text-transform: uppercase; }
-
-        /* BUSCADOR */
-        .search-container { padding: 0 20px 30px; }
-        #searchInput { width: 100%; max-width: 500px; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: white; outline: none; }
+        /* HEADER */
+        .header { padding: 30px; text-align: center; background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
+        .header-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); }
+        .tienda-nombre { font-size: 24px; font-weight: bold; margin-top: 10px; letter-spacing: 2px; }
 
         /* SECCIONES */
-        .seccion-titulo { color: var(--magenta); text-transform: uppercase; font-size: 16px; letter-spacing: 2px; margin: 30px 20px 15px; text-align: left; border-left: 4px solid var(--magenta); padding-left: 10px; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .seccion-titulo { color: var(--magenta); text-transform: uppercase; margin: 30px 20px 10px; border-left: 4px solid var(--magenta); padding-left: 10px; font-size: 14px; }
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; }
 
-        /* TARJETA ESTILO LUU STREAM (Imagen de Fondo Full) */
-        .card { 
-            position: relative; height: 350px; border-radius: 15px; overflow: hidden; 
-            border: 1px solid #333; transition: 0.3s; display: flex; flex-direction: column; justify-content: flex-end;
-            background-size: cover; background-position: center;
-        }
-        .card:hover { transform: scale(1.02); border-color: var(--cian); box-shadow: 0 0 20px rgba(0,212,255,0.4); }
-        .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 80%); z-index: 1; }
-        
-        .card-info { position: relative; z-index: 2; padding: 20px; text-align: left; }
-        .card-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
-        .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; }
+        /* TARJETAS */
+        .card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #222; transition: 0.3s; position: relative; }
+        .card:hover { border-color: var(--cian); transform: translateY(-5px); }
+        .img-box { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 15px; text-align: left; }
+        .card-title { font-size: 14px; font-weight: bold; margin-bottom: 5px; height: 35px; overflow: hidden; }
+        .card-price { font-size: 18px; color: var(--cian); font-weight: 800; }
 
-        /* BOTÓN COMPRAR */
-        .btn-add { 
-            background: var(--cian); color: black; border: none; padding: 10px; border-radius: 8px; 
-            font-weight: bold; width: 100%; cursor: pointer; text-transform: uppercase; transition: 0.2s;
-        }
-        .btn-add:hover { background: white; box-shadow: 0 0 15px white; }
-
-        /* CARRITO FLOTANTE */
-        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--magenta); color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--magenta); }
+        /* BOTONES */
+        .btn-add { background: var(--cian); color: black; border: none; width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .flotante { position: fixed; bottom: 20px; right: 20px; background: var(--magenta); color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 15px var(--magenta); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo">
+        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo" alt="Jack">
         <div class="tienda-nombre">JSNETWORKS</div>
     </div>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar plataforma o servicio..." onkeyup="filterProducts()">
-    </div>
+    <div class="seccion-titulo">Internet Ilimitado & Lurzavic</div>
+    <div id="cat-internet" class="catalogar"></div>
 
     <div class="seccion-titulo">Cuentas Streaming</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="seccion-titulo">Internet Ilimitado</div>
-    <div id="cat-internet" class="catalogar"></div>
-
-    <div class="flotacion" onclick="sendOrder()">
+    <div class="flotante" onclick="enviarPedido()">
         🛒 PEDIR POR WHATSAPP ($<span id="total-text">0</span>)
     </div>
 
     <script>
         const productos = [
-            { cat: "streaming", n: "NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a9ed00505b" },
-            { cat: "streaming", n: "DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65" },
-            { cat: "streaming", n: "HBO MAX / MAX", p: 4500, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
-            { cat: "streaming", n: "YOUTUBE PREMIUM", p: 3000, img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7" },
-            { cat: "internet", n: "LURZAVIC SMART TV", p: 13500, img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b" },
-            { cat: "internet", n: "INTERNET CEL (VPN)", p: 10000, img: "https://images.unsplash.com/photo-1563986768609-322da13575f3" }
+            { cat: "internet", n: "Lurzavic Prueba 3H", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratis_24911-47451.jpg" },
+            { cat: "internet", n: "Internet Móvil VPN", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet_24911-47000.jpg" },
+            { cat: "streaming", n: "Netflix Premium 4K", p: 7500, img: "https://geizhals.at/magazin/wp-content/uploads/2019/11/netflix-logo.jpg" },
+            { cat: "streaming", n: "Disney+ Premium", p: 4800, img: "https://cnnespanol.cnn.com/wp-content/uploads/2019/04/disney-plus-logo.jpg?quality=100&strip=info" },
+            { cat: "streaming", n: "HBO Max / Max", p: 4500, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" }
         ];
 
         let total = 0;
         let carrito = [];
 
-        function render(items = productos) {
-            document.getElementById('cat-streaming').innerHTML = '';
-            document.getElementById('cat-internet').innerHTML = '';
-            
-            items.forEach((p, i) => {
-                const container = document.getElementById(`cat-${p.cat}`);
-                const html = `
-                    <div class="card" style="background-image: url('${p.img}')">
-                        <div class="card-overlay"></div>
-                        <div class="card-info">
-                            <div class="card-title">${p.n}</div>
-                            <div class="card-price">$${p.p.toLocaleString('es-AR')}</div>
-                            <button class="btn-add" onclick="add(${i})">Añadir al pedido</button>
-                        </div>
-                    </div>`;
-                if(container) container.innerHTML += html;
+        function mostrar() {
+            productos.forEach((p, i) => {
+                const caja = document.getElementById(`cat-${p.cat}`);
+                if (caja) {
+                    caja.innerHTML += `
+                        <div class="card">
+                            <img src="${p.img}" class="img-box">
+                            <div class="card-body">
+                                <div class="card-title">${p.n}</div>
+                                <div class="card-price">$${p.p.toLocaleString()}</div>
+                                <button class="btn-add" onclick="agregar(${i})">AÑADIR AL PEDIDO</button>
+                            </div>
+                        </div>`;
+                }
             });
         }
 
-        function add(i) {
+        function agregar(i) {
             carrito.push(productos[i]);
             total += productos[i].p;
-            document.getElementById('total-text').innerText = total.toLocaleString('es-AR');
+            document.getElementById('total-text').innerText = total.toLocaleString();
         }
 
-        function filterProducts() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = productos.filter(p => p.n.toLowerCase().includes(term));
-            render(filtered);
+        function enviarPedido() {
+            if(carrito.length === 0) return alert("Elegí un servicio primero");
+            let texto = "¡Hola JSNETWORKS! 👋 Quiero contratar:%0A";
+            carrito.forEach(p => texto += `- ${p.n} ($${p.p})%0A`);
+            texto += "%0A💰 TOTAL: $" + total;
+            window.open("https://wa.me/5491134361679?text=" + texto);
         }
 
-        function sendOrder() {
-            if(carrito.length === 0) return alert("Seleccioná un servicio primero");
-            let msg = `¡Hola JSNETWORKS! 👋%0AQuiero contratar:%0A`;
-            carrito.forEach(p => msg += `• ${p.n} ($${p.p})%0A`);
-            msg += `%0A💰 TOTAL: $${total.toLocaleString('es-AR')}`;
-            window.open(`https://wa.me/5491134361679?text=${msg}`);
-        }
-
-        render();
+        mostrar();
     </script>
 </body>
 </html>
