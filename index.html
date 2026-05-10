@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ NETWORKS - Catálogo Oficial</title>
+    <title>SJ NETWORKS - Oficial</title>
     <style>
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #111; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
@@ -31,20 +31,20 @@
         <div class="tienda-nombre">SJ NETWORKS</div>
     </div>
 
-    <div class="seccion-titulo">📡 TELEVISIÓN PREMIUM</div>
+    <div class="seccion-titulo">📡 TELEVISIÓN & CINE</div>
     <div id="cat-tv" class="catalogar"></div>
 
-    <div class="seccion-titulo">📺 STREAMING & COMBOS</div>
+    <div class="seccion-titulo">📺 STREAMING INDIVIDUAL</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="seccion-titulo">📶 INTERNET & OTROS</div>
+    <div class="seccion-titulo">📶 INTERNET & CARGAS</div>
     <div id="cat-otros" class="catalogar"></div>
 
     <div id="modal-nombre">
         <div class="modal-content">
-            <h3 style="margin:0; font-size:16px;">PEDIDO PARA JACK 💀</h3>
-            <input type="text" id="input-nombre" placeholder="Tu nombre o apodo">
-            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR A WHATSAPP</button>
+            <h3 style="margin:0; font-size:16px;">TU NOMBRE PARA EL PEDIDO 💀</h3>
+            <input type="text" id="input-nombre" placeholder="¿Cómo te llamás?">
+            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR A JACK</button>
         </div>
     </div>
 
@@ -58,24 +58,15 @@
             { cat: "streaming", nombre: "HBO Max", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $8.000"] },
             { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800", "60 Días ➝ $5.400"] },
             { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["30 Días ➝ $3.000"] },
-            { cat: "streaming", nombre: "Paramount+", img: "https://images.unsplash.com/photo-1627873649417-c67f701f1949?w=400", opciones: ["30 Días ➝ $3.600"] },
+            { cat: "streaming", nombre: "Paramount+", img: "https://images.unsplash.com/photo-1627873649417-c67f701f1949?w=400", opciones: ["1 Disp ➝ $3.600"] },
             { cat: "streaming", nombre: "Crunchyroll", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["30 Días ➝ $4.000"] },
             { cat: "otros", nombre: "Lurzavic Internet", img: "https://i.ibb.co/L6S8tG0/internet-vph.jpg", opciones: ["30 Días ➝ $10.000", "Prueba Gratis"] },
             { cat: "otros", nombre: "Free Fire 💎", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["Consultar Pack"] }
         ];
 
-        let pedidoInfo = "";
+        let itemSel = "";
         function render() {
             productos.forEach((p, i) => {
                 const cont = document.getElementById(`cat-${p.cat}`);
                 let opts = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
-                cont.innerHTML += `<div class="card"><div class="img-container"><img src="${p.img}" class="card-img"></div><div class="card-body"><div class="card-title">${p.nombre}</div><select id="s-${i}" class="selector-opciones">${opts}</select><button class="btn-comprar" onclick="abrir(${i})">Comprar</button></div></div>`;
-            });
-        }
-        function abrir(i) {
-            pedidoInfo = `🛒 *${productos[i].nombre}*%0A📍 *${document.getElementById('s-'+i).value}*`;
-            document.getElementById('modal-nombre').style.display = 'flex';
-        }
-        function enviarPedido() {
-            const n = document.getElementById('input-nombre').value;
-            if(!n) return alert("Por favor, poné tu nombre.");
+                cont.innerHTML += `<div class="card"><div class="img-container"><img src="${p.img}" class="
