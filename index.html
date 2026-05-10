@@ -17,7 +17,7 @@
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card-body { padding: 10px; display: flex; flex-direction: column; }
         .card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; min-height: 30px; }
-        .selector-opciones { width: 100%; padding: 7px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 4px; margin-bottom: 10px; font-size: 11px; }
+        .selector-opciones { width: 100%; padding: 7px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 4px; margin-bottom: 10px; font-size: 11px; font-weight: bold; }
         .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 10px; border-radius: 4px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 10px; }
         #modal-nombre { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #1a1a1a; padding: 20px; border-radius: 10px; border: 2px solid var(--magenta); text-align: center; width: 80%; max-width: 280px; }
@@ -31,57 +31,24 @@
         <div class="tienda-nombre">SJ NETWORKS</div>
     </div>
 
-    <div class="seccion-titulo">📡 TV PREMIUM</div>
+    <div class="seccion-titulo">📡 TELEVISIÓN & CINE</div>
     <div id="cat-tv" class="catalogar"></div>
 
-    <div class="seccion-titulo">📺 CUENTAS Y PANTALLAS</div>
+    <div class="seccion-titulo">📺 STREAMING INDIVIDUAL</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="seccion-titulo">📶 INTERNET & OTROS</div>
+    <div class="seccion-titulo">📶 INTERNET & CARGAS</div>
     <div id="cat-otros" class="catalogar"></div>
 
     <div id="modal-nombre">
         <div class="modal-content">
-            <h3 style="margin:0; font-size:16px;">PEDIDO PARA JACK 💀</h3>
-            <input type="text" id="input-nombre" placeholder="Tu nombre">
-            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR A WHATSAPP</button>
+            <h3 style="margin:0; font-size:16px;">TU NOMBRE PARA EL PEDIDO 💀</h3>
+            <input type="text" id="input-nombre" placeholder="¿Cómo te llamás?">
+            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR A JACK</button>
         </div>
     </div>
 
     <script>
         const productos = [
             { cat: "tv", nombre: "Magis TV", img: "https://i.ibb.co/L6S8tG0/magis-tv.jpg", opciones: ["1 Mes ➝ $4.500", "3 Meses ➝ $12.000"] },
-            { cat: "tv", nombre: "Tele Latino", img: "https://i.ibb.co/hZ7X9L1/tele-latino.jpg", opciones: ["1 Mes ➝ $4.000", "Anual ➝ $25.000"] },
-            { cat: "streaming", nombre: "Netflix Premium", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400", opciones: ["1 Disp ➝ $6.000", "2 Disp ➝ $8.000", "3 Disp ➝ $12.000"] },
-            { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $7.000", "3 Disp ➝ $14.000"] },
-            { cat: "streaming", nombre: "Prime Video", img: "https://images.unsplash.com/photo-1585647347384-2593bcc357d3?w=400", opciones: ["1 Disp ➝ $4.000", "2 Disp ➝ $6.500"] },
-            { cat: "streaming", nombre: "HBO Max", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $8.000"] },
-            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800", "60 Días ➝ $5.400"] },
-            { cat: "streaming", nombre: "Crunchyroll", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["30 Días ➝ $4.000"] },
-            { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["30 Días ➝ $3.000"] },
-            { cat: "otros", nombre: "Lurzavic Internet", img: "https://i.ibb.co/L6S8tG0/internet-vph.jpg", opciones: ["30 Días ➝ $10.000", "Prueba Gratis"] },
-            { cat: "otros", nombre: "Diamantes Free Fire", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["Consultar Stock 💎"] }
-        ];
-
-        let itemSel = "";
-        function render() {
-            productos.forEach((p, i) => {
-                const cont = document.getElementById(`cat-${p.cat}`);
-                let opts = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
-                cont.innerHTML += `<div class="card"><div class="img-container"><img src="${p.img}" class="card-img"></div><div class="card-body"><div class="card-title">${p.nombre}</div><select id="s-${i}" class="selector-opciones">${opts}</select><button class="btn-comprar" onclick="abrir(${i})">Comprar</button></div></div>`;
-            });
-        }
-        function abrir(i) {
-            itemSel = `🛒 *${productos[i].nombre}*%0A📍 *${document.getElementById('s-'+i).value}*`;
-            document.getElementById('modal-nombre').style.display = 'flex';
-        }
-        function enviarPedido() {
-            const n = document.getElementById('input-nombre').value;
-            if(!n) return alert("Ingresá tu nombre.");
-            window.open(`https://wa.me/5491134361679?text=¡Hola JACK! 💀%0A%0ASoy: *${n}*%0AQuiero: ${itemSel}`);
-            document.getElementById('modal-nombre').style.display = 'none';
-        }
-        window.onload = render;
-    </script>
-</body>
-</html>
+            { cat: "tv", nombre: "Tele Latino", img: "https://i.ibb.co/hZ7X9L1/tele-latino.jpg", opciones
