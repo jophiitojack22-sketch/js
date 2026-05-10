@@ -18,7 +18,7 @@
         .card-img { width: 100%; height: 100%; object-fit: cover; }
         .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; min-height: 35px; color: #fff; }
-        .selector-opciones { width: 100%; padding: 8px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 5px; margin-bottom: 10px; font-size: 11px; font-weight: bold; }
+        .selector-opciones { width: 100%; padding: 8px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 5px; margin-bottom: 10px; font-size: 11px; font-weight: bold; outline: none; }
         .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 12px; border-radius: 6px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 10px; }
         #modal-nombre { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #1a1a1a; padding: 25px; border-radius: 12px; border: 2px solid var(--magenta); text-align: center; width: 85%; max-width: 300px; }
@@ -43,13 +43,19 @@
 
     <div id="modal-nombre">
         <div class="modal-content">
-            <h3 style="margin:0; font-size:18px; color: var(--magenta);">¡PEDIDO CASI LISTO! 💀</h3>
-            <p style="font-size: 13px; margin-top: 10px;">Ingresá tu nombre para enviarlo a Jack:</p>
-            <input type="text" id="input-nombre" placeholder="Tu nombre aquí">
-            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR POR WHATSAPP</button>
+            <h3 style="margin:0; font-size:18px; color: var(--magenta);">¡CASI LISTO! 💀</h3>
+            <p style="font-size: 13px; margin-top: 10px;">Poné tu nombre para avisarle a Jack:</p>
+            <input type="text" id="input-nombre" placeholder="¿Cómo te llamás?">
+            <button class="btn-confirmar" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
         </div>
     </div>
 
     <script>
         const productos = [
-            { cat: "tv", nombre: "Magis TV (Global)", img: "https://
+            { cat: "tv", nombre: "Magis TV (Global)", img: "https://i.ibb.co/L6S8tG0/magis-tv.jpg", opciones: ["1 Mes ➝ $4.500", "3 Meses ➝ $12.000"] },
+            { cat: "tv", nombre: "Tele Latino", img: "https://i.ibb.co/hZ7X9L1/tele-latino.jpg", opciones: ["1 Mes ➝ $4.000", "Anual ➝ $25.000"] },
+            { cat: "streaming", nombre: "Netflix Premium", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400", opciones: ["1 Disp ➝ $6.000", "2 Disp ➝ $8.000", "3 Disp ➝ $12.000"] },
+            { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $7.000", "3 Disp ➝ $14.000"] },
+            { cat: "streaming", nombre: "Amazon Prime Video", img: "https://images.unsplash.com/photo-1585647347384-2593bcc357d3?w=400", opciones: ["1 Disp ➝ $4.000", "2 Disp ➝ $6.500"] },
+            { cat: "streaming", nombre: "HBO Max", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $8.000"] },
+            { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["3
