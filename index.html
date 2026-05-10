@@ -8,32 +8,32 @@
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #141414; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         
-        /* HEADER */
+        /* HEADER CON ESTILO NEÓN */
         .header { padding: 30px 20px; background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
         .header-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
-        .tienda-nombre { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
+        .tienda-nombre { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; text-shadow: 0 0 10px var(--cian); }
 
-        /* SECCIONES */
+        /* SECCIONES Y GRILLA */
         .seccion-titulo { color: var(--magenta); text-transform: uppercase; font-size: 16px; letter-spacing: 2px; margin: 30px 20px 10px; text-align: left; border-left: 4px solid var(--magenta); padding-left: 10px; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
 
         /* TARJETAS VERTICALES */
-        .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; }
+        .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; position: relative; }
         .card:hover { border-color: var(--cian); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
-        .img-container { width: 100%; height: 230px; position: relative; }
+        .img-container { width: 100%; height: 230px; overflow: hidden; position: relative; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--cian); padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid var(--cian); }
+        .badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--cian); padding: 5px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid var(--cian); z-index: 2; }
 
-        .card-body { padding: 15px; text-align: left; flex-grow: 1; }
+        .card-body { padding: 15px; text-align: left; flex-grow: 1; background: linear-gradient(to top, #000, transparent); }
         .card-title { font-size: 15px; font-weight: bold; margin-bottom: 8px; color: white; height: 40px; overflow: hidden; }
-        .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; }
+        .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; text-shadow: 0 0 5px var(--cian); }
 
-        /* BOTONES */
+        /* BOTONES DE COMPRA */
         .btn-add { background: var(--magenta); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
-        .btn-add:hover { filter: brightness(1.2); box-shadow: 0 0 10px var(--magenta); }
+        .btn-add:hover { filter: brightness(1.2); box-shadow: 0 0 15px var(--magenta); }
 
-        /* CARRITO */
-        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); }
+        /* CARRITO FLOTANTE */
+        .flotacion { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--cian); color: black; padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -53,22 +53,22 @@
     <div id="cat-combos" class="catalogar"></div>
 
     <div class="flotacion" onclick="enviarPedido()">
-        🛒 PEDIR POR WHATSAPP: $<span id="total-text">0</span>
+        🛒 VER PEDIDO: $<span id="total-text">0</span>
     </div>
 
     <script>
         const productos = [
-            // INTERNET
+            // SECCIÓN INTERNET (Corregido: cat "internet")
             { cat: "internet", n: "Lurzavic Prueba 3H", p: 0, b: "PRUEBA", img: "https://images.pexels.com/photos/4050291/pexels-photo-4050291.jpeg" },
             { cat: "internet", n: "Lurzavic 2 Disp (TV+Cel)", p: 13500, b: "SMART TV", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg" },
             { cat: "internet", n: "Internet Móvil VPN", p: 10000, b: "CELULAR", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg" },
             
-            // STREAMING
+            // SECCIÓN STREAMING
             { cat: "streaming", n: "Netflix Premium 4K", p: 7500, b: "NETFLIX", img: "https://www.the-sun.com/wp-content/uploads/sites/6/2022/02/TM_Netflix-Explainer_OFF-1.jpg" },
             { cat: "streaming", n: "Disney+ Premium", p: 4800, b: "DISNEY+", img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f9d149f1165a6c382f7c65330e0600.png" },
             { cat: "streaming", n: "HBO Max / Max", p: 4500, b: "HBO MAX", img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
             
-            // COMBOS
+            // SECCIÓN COMBOS
             { cat: "combos", n: "Combo 4 en 1 Premium", p: 16400, b: "OFERTA", img: "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg" }
         ];
 
@@ -81,9 +81,9 @@
                 if(contenedor) {
                     contenedor.innerHTML += `
                     <div class="card">
+                        <div class="badge">${p.b}</div>
                         <div class="img-container">
-                            <div class="badge">${p.b}</div>
-                            <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/200x300?text=Cargando...'">
+                            <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/200x300?text=JS+NETWORKS'">
                         </div>
                         <div class="card-body">
                             <div class="card-title">${p.n}</div>
@@ -102,13 +102,14 @@
         }
 
         function enviarPedido() {
-            if(carrito.length === 0) return alert("Elegí un servicio primero.");
-            let msg = `¡Hola JSNETWORKS! 👋 Quiero contratar:%0A%0A`;
-            carrito.forEach(p => msg += `✅ ${p.n} ($${p.p})%0A`);
-            msg += `%0A💰 TOTAL: $${total.toLocaleString('es-AR')}`;
+            if(carrito.length === 0) return alert("Primero seleccioná un servicio.");
+            let msg = `¡Hola JSNETWORKS! 👋%0AQuiero contratar los siguientes servicios:%0A%0A`;
+            carrito.forEach(p => msg += `✅ ${p.n} - $${p.p}%0A`);
+            msg += `%0A💰 *TOTAL: $${total.toLocaleString('es-AR')}*`;
             window.open(`https://wa.me/5491134361679?text=${msg}`);
         }
-        render();
+
+        window.onload = render;
     </script>
 </body>
 </html>
