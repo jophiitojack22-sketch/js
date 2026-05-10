@@ -3,110 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSNETWORKS - Tienda Oficial</title>
+    <title>SJ NETWORKS - Catálogo Completo</title>
     <style>
-        :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #141414; }
-        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
+        :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #111; }
+        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
-        /* HEADER CON ESTILO NEÓN */
-        .header { padding: 30px 20px; background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
+        .header { padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--cian); background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
         .header-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
-        .tienda-nombre { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; text-shadow: 0 0 10px var(--cian); }
+        .tienda-nombre { font-size: 26px; font-weight: 900; margin-top: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        .frase-jack { color: var(--magenta); font-size: 14px; font-weight: bold; margin-top: 10px; text-transform: uppercase; }
 
-        /* SECCIONES Y GRILLA */
-        .seccion-titulo { color: var(--magenta); text-transform: uppercase; font-size: 16px; letter-spacing: 2px; margin: 30px 20px 10px; text-align: left; border-left: 4px solid var(--magenta); padding-left: 10px; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .seccion-titulo { color: var(--cian); text-transform: uppercase; font-size: 13px; letter-spacing: 2px; margin: 35px 20px 10px; border-left: 5px solid var(--cian); padding-left: 10px; font-weight: 900; }
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* TARJETAS VERTICALES */
-        .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; position: relative; }
-        .card:hover { border-color: var(--cian); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
-        .img-container { width: 100%; height: 230px; overflow: hidden; position: relative; }
+        .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--magenta); transform: translateY(-5px); }
+        .img-container { width: 100%; height: 190px; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--cian); padding: 5px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid var(--cian); z-index: 2; }
+        
+        .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; min-height: 35px; }
 
-        .card-body { padding: 15px; text-align: left; flex-grow: 1; background: linear-gradient(to top, #000, transparent); }
-        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 8px; color: white; height: 40px; overflow: hidden; }
-        .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; text-shadow: 0 0 5px var(--cian); }
+        .selector-opciones { width: 100%; padding: 10px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 6px; margin-bottom: 12px; font-size: 12px; font-weight: bold; outline: none; }
+        .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 11px; }
 
-        /* BOTONES DE COMPRA */
-        .btn-add { background: var(--magenta); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
-        .btn-add:hover { filter: brightness(1.2); box-shadow: 0 0 15px var(--magenta); }
-
-        /* CARRITO FLOTANTE */
-        .flotacion { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--cian); color: black; padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); white-space: nowrap; }
+        #modal-nombre { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: #1a1a1a; padding: 25px; border-radius: 15px; border: 2px solid var(--magenta); text-align: center; width: 100%; max-width: 320px; }
+        .modal-content input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; text-align: center; box-sizing: border-box; }
+        .btn-confirmar { background: var(--magenta); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo" alt="Logo JSNETWORKS">
-        <div class="tienda-nombre">JSNETWORKS</div>
+        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo">
+        <div class="tienda-nombre">SJ NETWORKS</div>
+        <div class="frase-jack">Tu Entretenimiento lo Encontras en SJ Netbook JACK !</div>
     </div>
 
-    <div class="seccion-titulo">Internet Lurzavic & Móvil</div>
-    <div id="cat-internet" class="catalogar"></div>
+    <div class="seccion-titulo">🎮 CARGAS DE DIAMANTES (FREE FIRE)</div>
+    <div id="cat-juegos" class="catalogar"></div>
 
-    <div class="seccion-titulo">Cuentas Streaming</div>
-    <div id="cat-streaming" class="catalogar"></div>
+    <div class="seccion-titulo">🚀 POWER SIGNALS (IPTV)</div>
+    <div id="cat-power" class="catalogar"></div>
 
-    <div class="seccion-titulo">Combos Promocionales</div>
+    <div class="seccion-titulo">💎 COMBOS VIP (MAX AHORRO)</div>
     <div id="cat-combos" class="catalogar"></div>
 
-    <div class="flotacion" onclick="enviarPedido()">
-        🛒 VER PEDIDO: $<span id="total-text">0</span>
+    <div class="seccion-titulo">📶 INTERNET ILIMITADO LURZAVIC</div>
+    <div id="cat-internet" class="catalogar"></div>
+
+    <div class="seccion-titulo">📺 CUENTAS STREAMING</div>
+    <div id="cat-streaming" class="catalogar"></div>
+
+    <div id="modal-nombre">
+        <div class="modal-content">
+            <h3>¡PEDIDO NUEVO! 💀</h3>
+            <p>Ingresá tu nombre para enviarle la compra a Jack:</p>
+            <input type="text" id="input-nombre" placeholder="Tu nombre aquí...">
+            <button class="btn-confirmar" onclick="enviarWhatsApp()">LISTO, ENVIAR POR WHATSAPP</button>
+        </div>
     </div>
 
     <script>
         const productos = [
-            // SECCIÓN INTERNET (Corregido: cat "internet")
-            { cat: "internet", n: "Lurzavic Prueba 3H", p: 0, b: "PRUEBA", img: "https://images.pexels.com/photos/4050291/pexels-photo-4050291.jpeg" },
-            { cat: "internet", n: "Lurzavic 2 Disp (TV+Cel)", p: 13500, b: "SMART TV", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg" },
-            { cat: "internet", n: "Internet Móvil VPN", p: 10000, b: "CELULAR", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg" },
+            // JUEGOS
+            { cat: "juegos", nombre: "Diamantes Free Fire", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["100 💎 ➝ $3.000", "310 💎 ➝ $6.000", "520 💎 ➝ $8.000", "1060 💎 ➝ $16.000"] },
             
-            // SECCIÓN STREAMING
-            { cat: "streaming", n: "Netflix Premium 4K", p: 7500, b: "NETFLIX", img: "https://www.the-sun.com/wp-content/uploads/sites/6/2022/02/TM_Netflix-Explainer_OFF-1.jpg" },
-            { cat: "streaming", n: "Disney+ Premium", p: 4800, b: "DISNEY+", img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f9d149f1165a6c382f7c65330e0600.png" },
-            { cat: "streaming", n: "HBO Max / Max", p: 4500, b: "HBO MAX", img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
-            
-            // SECCIÓN COMBOS
-            { cat: "combos", n: "Combo 4 en 1 Premium", p: 16400, b: "OFERTA", img: "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg" }
+            // POWER SIGNALS
+            { cat: "power", nombre: "Power Signals", img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", opciones: ["1 Disp ➝ $7.500", "2 Disp ➝ $10.500", "3 Disp ➝ $13.500", "4 Disp ➝ $16.500"] },
+
+            // COMBOS VIP
+            { cat: "combos", nombre: "Combo Disney+HBO+Prime", img: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400", opciones: ["1 Dispositivo ➝ $12.000", "2 Dispositivos ➝ $13.000"] },
+
+            // INTERNET LURZAVIC
+            { cat: "internet", nombre: "Lurzavic Individual", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg", opciones: ["7 Días ➝ $5.000", "15 Días ➝ $8.000", "30 Días ➝ $10.000", "PRUEBA 3 HORAS ➝ GRATIS"] },
+            { cat: "internet", nombre: "Combo Lurzavic TV+Cel", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg", opciones: ["7 Días ➝ $6.000", "15 Días ➝ $9.500", "30 Días ➝ $12.000", "2 Meses ➝ $18.000"] },
+
+            // STREAMING
+            { cat: "streaming", nombre: "Netflix Premium 4K", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400", opciones: ["1 Pantalla ➝ $4.000", "2 Pantallas ➝ $6.000", "3 Pantallas ➝ $10.000"] },
+            { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["Cuenta completa ➝ $4.800"] },
+            { cat: "streaming", nombre: "Max Platinum (HBO)", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["Cuenta completa ➝ $4.500"] },
+            { cat: "streaming", nombre: "Crunchyroll Fan", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["30 Días ➝ $3.500"] },
+            { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["30 Días ➝ $3.000"] },
+            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800"] }
         ];
 
-        let total = 0;
-        let carrito = [];
+        let pedidoTemporal = "";
 
         function render() {
             productos.forEach((p, i) => {
                 const contenedor = document.getElementById(`cat-${p.cat}`);
-                if(contenedor) {
-                    contenedor.innerHTML += `
-                    <div class="card">
-                        <div class="badge">${p.b}</div>
-                        <div class="img-container">
-                            <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/200x300?text=JS+NETWORKS'">
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">${p.n}</div>
-                            <div class="card-price">$${p.p.toLocaleString('es-AR')}</div>
-                            <button class="btn-add" onclick="agregar(${i})">Añadir al pedido</button>
-                        </div>
-                    </div>`;
-                }
+                let optionsHtml = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
+                contenedor.innerHTML += `
+                <div class="card">
+                    <div class="img-container"><img src="${p.img}" class="card-img"></div>
+                    <div class="card-body">
+                        <div class="card-title">${p.nombre}</div>
+                        <select id="select-${i}" class="selector-opciones">${optionsHtml}</select>
+                        <button class="btn-comprar" onclick="abrirModal(${i})">Comprar ahora</button>
+                    </div>
+                </div>`;
             });
         }
 
-        function agregar(i) {
-            carrito.push(productos[i]);
-            total += productos[i].p;
-            document.getElementById('total-text').innerText = total.toLocaleString('es-AR');
+        function abrirModal(index) {
+            const opc = document.getElementById(`select-${index}`).value;
+            pedidoTemporal = `🛒 *${productos[index].nombre}*%0A📍 Opción: *${opc}*`;
+            document.getElementById('modal-nombre').style.display = 'flex';
         }
 
-        function enviarPedido() {
-            if(carrito.length === 0) return alert("Primero seleccioná un servicio.");
-            let msg = `¡Hola JSNETWORKS! 👋%0AQuiero contratar los siguientes servicios:%0A%0A`;
-            carrito.forEach(p => msg += `✅ ${p.n} - $${p.p}%0A`);
-            msg += `%0A💰 *TOTAL: $${total.toLocaleString('es-AR')}*`;
-            window.open(`https://wa.me/5491134361679?text=${msg}`);
+        function enviarWhatsApp() {
+            const nombre = document.getElementById('input-nombre').value;
+            if(!nombre) return alert("Por favor, ingresá tu nombre.");
+            const numero = "5491134361679";
+            const texto = `¡Hola JACK! 💀%0A%0AMi nombre es: *${nombre}*%0AQuiero realizar este pedido:%0A${pedidoTemporal}`;
+            window.open(`https://wa.me/${numero}?text=${texto}`);
+            document.getElementById('modal-nombre').style.display = 'none';
         }
 
         window.onload = render;
