@@ -1,103 +1,79 @@
-     const productos = [
-        // --- SECCIÓN INTERNET LURZAVIC (TV + CELULAR) ---
-        { 
-            norte: "⚡ LURZAVIC - PRUEBA 3 HORAS", 
-            pag: 0, 
-            imagen: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg",
-            popular: verdadero,
-            descripcion: "TV + Celular. Código Downloader: 7169428. ¡Probá la potencia ahora!" 
-        },
-        { 
-            norte: "📶 LURZAVIC - 2 DISP (TV + Cel)", 
-            pag: 13500, 
-            imagen: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
-            descripcion: "7 días: $7.000 | 15 días: $11.000 | 30 días: $13.500. Smart TV y Android." 
-        },
-        { 
-            norte: "📶 LURZAVIC - 3 DISPOSITIVOS", 
-            pag: 17000, 
-            imagen: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
-            descripcion: "7 días: $8.500 | 15 días: $13.500 | 30 días: $17.000. Ideal para la familia." 
-        },
-        { 
-            norte: "📶 LURZAVIC - 4 DISPOSITIVOS", 
-            pag: 20000, 
-            imagen: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
-            descripcion: "7 días: $10.000 | 15 días: $16.000 | 30 días: $20.000. Máximo rendimiento." 
-        },
-        { 
-            norte: "💥 OFERTA: 4 DISP - 2 MESES", 
-            pag: 28000, 
-            imagen: "https://img.freepik.com/vector-premium/etiqueta-oferta-especial-roja_24877-50854.jpg",
-            popular: verdadero,
-            descripcion: "Lurzavic por 60 días. ¡Garantía total y el mejor precio!" 
-        },
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSNETWORKS - Catálogo</title>
+    <style>
+        /* Aquí va tu diseño CSS (el que tiene los colores neón y las tarjetas) */
+        :root { --cyan: #00d4ff; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: sans-serif; padding: 20px; }
+        .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #1a1a1a; border-radius: 10px; padding: 15px; border: 1px solid #333; text-align: center; }
+        .card[data-popular="true"] { border-color: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
+        .card-img { width: 100%; border-radius: 8px; height: 150px; object-fit: cover; }
+        .btn-add { background: var(--cyan); border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
+        .cart-float { position: fixed; bottom: 20px; right: 20px; background: var(--cyan); color: black; padding: 15px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
 
-        // --- SECCIÓN INTERNET CELULAR (PERSONAL) ---
-        { 
-            norte: "🚀 Internet CEL (30 Días)", 
-            pag: 10000, 
-            imagen: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg",
-            descripcion: "7 días: $5.000 | 15 días: $8.000. TikTok y Redes sin gastar megas." 
-        },
-        { 
-            norte: "🎮 JUEGOS POR INTERNET (Próximamente)", 
-            pag: 0, 
-            imagen: "https://img.freepik.com/vector-premium/logotipo-deportes-electronicos-jugador-auriculares_157713-10.jpg",
-            descripcion: "Baja latencia para tus partidas. ¡Consultá por el tuyo!" 
-        },
+    <h1 style="text-align: center; color: var(--cyan);">JSNETWORKS</h1>
+    <input type="text" id="searchInput" placeholder="Buscar servicio..." onkeyup="filterProducts()" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: none;">
+    
+    <div id="catalog" class="catalog"></div>
 
-        // --- SECCIÓN COMBOS STREAMING ---
-        { 
-            norte: "🎁 COMBOS PREMIUM 4 EN 1", 
-            pag: 16400, 
-            imagen: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg",
-            descripcion: "Netflix + Disney + HBO + Prime. 1 paquete: $16.400 | 2 paquetes: $18.200" 
-        },
-        { 
-            norte: "🎁 COMBOS 3 SERVICIOS", 
-            pag: 9400, 
-            imagen: "https://hbomax-images.warnermediacdn.com/2020-05/square.png",
-            descripcion: "Netflix + Disney + HBO/Prime. Desde $9.400. ¡Elegí tu combo!" 
+    <div class="cart-float" onclick="sendOrder()">
+        🛒 TOTAL: $<span id="total-text">0</span>
+    </div>
+
+    <script>
+        const productos = [
+            { n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", popular: true, desc: "Código Downloader: 7169428" },
+            { n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", desc: "7d: $7.000 | 15d: $11.000 | 30d: $13.500" },
+            { n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", desc: "TikTok y Redes sin gastar tus megas" },
+            { n: "🎁 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg", desc: "Netflix + Disney + HBO + Prime" }
+        ];
+
+        let carrito = [];
+        let total = 0;
+
+        function render(data = productos) {
+            const catalog = document.getElementById('catalog');
+            catalog.innerHTML = '';
+            data.forEach((prod, i) => {
+                catalog.innerHTML += `
+                    <div class="card" ${prod.popular ? 'data-popular="true"' : ''}>
+                        <img src="${prod.img}" class="card-img">
+                        <h3>${prod.n}</h3>
+                        <p style="font-size: 12px; color: #aaa;">${prod.desc}</p>
+                        <p style="color: var(--cyan); font-weight: bold;">$${prod.p.toLocaleString()}</p>
+                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
+                    </div>`;
+            });
         }
-    ];
 
-    let carrito = [];
-    let total = 0;
+        function add(i) {
+            carrito.push(productos[i]);
+            total += productos[i].p;
+            document.getElementById('total-text').innerText = total.toLocaleString();
+        }
 
-    function prestar(datos = productos) {
-        const catalogar = document.getElementById('catalogar');
-        catalogar.innerHTML = '';
-        datos.forEach((pag, i) => {
-            catalogar.innerHTML += `
-                <div class="card" ${pag.popular ? 'data-popular="true"' : ''}>
-                    <img src="${pag.imagen}" class="card-img">
-                    <div class="card-info">
-                        <div class="card-title">${pag.norte}</div>
-                        <div class="card-desc" style="font-size: 11px; color: #888; margin-bottom: 10px;">${pag.descripcion || ''}</div>
-                        <div class="card-price">$${pag.pag.toLocaleString()}</div>
-                        <button class="btn-add" onclick="agregar(${i})">AÑADIR</button>
-                    </div>
-                </div>`;
-        });
-    }
+        function filterProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = productos.filter(p => p.n.toLowerCase().includes(term));
+            render(filtered);
+        }
 
-    function agregar(i) {
-        carrito.push(productos[i]);
-        total += productos[i].pag;
-        document.getElementById('total-text').innerText = total.toLocaleString();
-    }
+        function sendOrder() {
+            if(carrito.length === 0) return alert("Elegí un servicio primero");
+            let msg = `¡Hola *JSNETWORKS*! 👋 Quiero contratar:%0A%0A`;
+            carrito.forEach(p => msg += `✅ *${p.n}* - $${p.p.toLocaleString()}%0A`);
+            msg += `%0A💰 *TOTAL: $${total.toLocaleString()}*`;
+            window.open(`https://wa.me/5491134361679?text=${msg}`);
+        }
 
-    function enviarPedido() {
-        const nombre = document.getElementById('userName').value || "Cliente";
-        if(carrito.length === 0) return alert("Elegí un servicio primero");
-        
-        let msg = `¡Hola *JSNETWORKS*! 👋%0ASoy *${nombre}* y quiero contratar:%0A%0A`;
-        carrito.forEach(p => msg += `✅ *${p.norte}* - $${p.pag.toLocaleString()}%0A`);
-        msg += `%0A💰 *TOTAL: $${total.toLocaleString()}*%0A%0A_Consulta por el Internet Gaming o instalaciones Smart TV_`;
-        
-        window.open(`https://wa.me/5491134361679?text=${msg}`);
-    }
-
-    prestar();
-</script>
+        render();
+    </script>
+</body>
+</html>
