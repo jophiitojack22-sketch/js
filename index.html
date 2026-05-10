@@ -8,13 +8,16 @@
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #141414; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         
+        /* HEADER */
         .header { padding: 30px 20px; background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
         .header-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
         .tienda-nombre { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
 
+        /* SECCIONES */
         .seccion-titulo { color: var(--magenta); text-transform: uppercase; font-size: 16px; letter-spacing: 2px; margin: 30px 20px 10px; text-align: left; border-left: 4px solid var(--magenta); padding-left: 10px; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
 
+        /* TARJETAS VERTICALES */
         .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; display: flex; flex-direction: column; }
         .card:hover { border-color: var(--cian); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); }
         .img-container { width: 100%; height: 230px; position: relative; }
@@ -25,9 +28,11 @@
         .card-title { font-size: 15px; font-weight: bold; margin-bottom: 8px; color: white; height: 40px; overflow: hidden; }
         .card-price { font-size: 22px; color: var(--cian); font-weight: 900; margin-bottom: 15px; }
 
+        /* BOTONES */
         .btn-add { background: var(--magenta); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
         .btn-add:hover { filter: brightness(1.2); box-shadow: 0 0 10px var(--magenta); }
 
+        /* CARRITO */
         .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; z-index: 100; box-shadow: 0 0 20px var(--cian); }
     </style>
 </head>
@@ -53,12 +58,17 @@
 
     <script>
         const productos = [
+            // INTERNET
             { cat: "internet", n: "Lurzavic Prueba 3H", p: 0, b: "PRUEBA", img: "https://images.pexels.com/photos/4050291/pexels-photo-4050291.jpeg" },
             { cat: "internet", n: "Lurzavic 2 Disp (TV+Cel)", p: 13500, b: "SMART TV", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg" },
             { cat: "internet", n: "Internet Móvil VPN", p: 10000, b: "CELULAR", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg" },
+            
+            // STREAMING
             { cat: "streaming", n: "Netflix Premium 4K", p: 7500, b: "NETFLIX", img: "https://www.the-sun.com/wp-content/uploads/sites/6/2022/02/TM_Netflix-Explainer_OFF-1.jpg" },
             { cat: "streaming", n: "Disney+ Premium", p: 4800, b: "DISNEY+", img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f9d149f1165a6c382f7c65330e0600.png" },
             { cat: "streaming", n: "HBO Max / Max", p: 4500, b: "HBO MAX", img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
+            
+            // COMBOS
             { cat: "combos", n: "Combo 4 en 1 Premium", p: 16400, b: "OFERTA", img: "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg" }
         ];
 
