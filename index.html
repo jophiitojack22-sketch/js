@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ NETWORKS - Oficial</title>
+    <title>SJ NETWORKS - Catálogo Oficial</title>
     <style>
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #111; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         .header { padding: 30px 20px; text-align: center; border-bottom: 2px solid var(--cian); background: #111; }
-        .header-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--cian); object-fit: cover; }
-        .tienda-nombre { font-size: 22px; font-weight: 900; margin-top: 10px; letter-spacing: 2px; }
+        .header-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--cian); object-fit: cover; box-shadow: 0 0 15px var(--cian); }
+        .tienda-nombre { font-size: 24px; font-weight: 900; margin-top: 10px; letter-spacing: 2px; text-transform: uppercase; }
         .seccion-titulo { color: var(--cian); text-transform: uppercase; font-size: 13px; margin: 25px 20px 10px; border-left: 4px solid var(--cian); padding-left: 10px; font-weight: 800; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 0 20px 20px; }
-        .card { background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; }
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 12px; padding: 0 20px 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { border-color: var(--magenta); transform: translateY(-3px); }
         .img-container { width: 100%; height: 130px; }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
-        .card-body { padding: 10px; display: flex; flex-direction: column; }
-        .card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; min-height: 30px; }
-        .selector-opciones { width: 100%; padding: 7px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 4px; margin-bottom: 10px; font-size: 11px; font-weight: bold; }
-        .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 10px; border-radius: 4px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 10px; }
+        .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; min-height: 35px; color: #fff; }
+        .selector-opciones { width: 100%; padding: 8px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 5px; margin-bottom: 10px; font-size: 11px; font-weight: bold; }
+        .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 12px; border-radius: 6px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 10px; }
         #modal-nombre { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: #1a1a1a; padding: 20px; border-radius: 10px; border: 2px solid var(--magenta); text-align: center; width: 80%; max-width: 280px; }
-        .modal-content input { width: 100%; padding: 10px; margin: 15px 0; border-radius: 4px; border: 1px solid #444; background: #000; color: white; text-align: center; box-sizing: border-box; }
-        .btn-confirmar { background: var(--magenta); color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; width: 100%; cursor: pointer; }
+        .modal-content { background: #1a1a1a; padding: 25px; border-radius: 12px; border: 2px solid var(--magenta); text-align: center; width: 85%; max-width: 300px; }
+        .modal-content input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px; border: 1px solid #444; background: #000; color: white; text-align: center; box-sizing: border-box; font-size: 16px; }
+        .btn-confirmar { background: var(--magenta); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; width: 100%; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -31,42 +32,24 @@
         <div class="tienda-nombre">SJ NETWORKS</div>
     </div>
 
-    <div class="seccion-titulo">📡 TELEVISIÓN & CINE</div>
+    <div class="seccion-titulo">📺 SERVICIOS DE TV</div>
     <div id="cat-tv" class="catalogar"></div>
 
-    <div class="seccion-titulo">📺 STREAMING INDIVIDUAL</div>
+    <div class="seccion-titulo">🎬 STREAMING PREMIUM</div>
     <div id="cat-streaming" class="catalogar"></div>
 
-    <div class="seccion-titulo">📶 INTERNET & CARGAS</div>
+    <div class="seccion-titulo">📶 OTROS SERVICIOS</div>
     <div id="cat-otros" class="catalogar"></div>
 
     <div id="modal-nombre">
         <div class="modal-content">
-            <h3 style="margin:0; font-size:16px;">TU NOMBRE PARA EL PEDIDO 💀</h3>
-            <input type="text" id="input-nombre" placeholder="¿Cómo te llamás?">
-            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR A JACK</button>
+            <h3 style="margin:0; font-size:18px; color: var(--magenta);">¡PEDIDO CASI LISTO! 💀</h3>
+            <p style="font-size: 13px; margin-top: 10px;">Ingresá tu nombre para enviarlo a Jack:</p>
+            <input type="text" id="input-nombre" placeholder="Tu nombre aquí">
+            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR POR WHATSAPP</button>
         </div>
     </div>
 
     <script>
         const productos = [
-            { cat: "tv", nombre: "Magis TV", img: "https://i.ibb.co/L6S8tG0/magis-tv.jpg", opciones: ["1 Mes ➝ $4.500", "3 Meses ➝ $12.000"] },
-            { cat: "tv", nombre: "Tele Latino", img: "https://i.ibb.co/hZ7X9L1/tele-latino.jpg", opciones: ["1 Mes ➝ $4.000", "Anual ➝ $25.000"] },
-            { cat: "streaming", nombre: "Netflix Premium", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400", opciones: ["1 Disp ➝ $6.000", "2 Disp ➝ $8.000", "3 Disp ➝ $12.000"] },
-            { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $7.000", "3 Disp ➝ $14.000"] },
-            { cat: "streaming", nombre: "Amazon Prime", img: "https://images.unsplash.com/photo-1585647347384-2593bcc357d3?w=400", opciones: ["1 Disp ➝ $4.000", "2 Disp ➝ $6.500"] },
-            { cat: "streaming", nombre: "HBO Max", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["1 Disp ➝ $5.000", "2 Disp ➝ $8.000"] },
-            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800", "60 Días ➝ $5.400"] },
-            { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["30 Días ➝ $3.000"] },
-            { cat: "streaming", nombre: "Paramount+", img: "https://images.unsplash.com/photo-1627873649417-c67f701f1949?w=400", opciones: ["1 Disp ➝ $3.600"] },
-            { cat: "streaming", nombre: "Crunchyroll", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["30 Días ➝ $4.000"] },
-            { cat: "otros", nombre: "Lurzavic Internet", img: "https://i.ibb.co/L6S8tG0/internet-vph.jpg", opciones: ["30 Días ➝ $10.000", "Prueba Gratis"] },
-            { cat: "otros", nombre: "Free Fire 💎", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["Consultar Pack"] }
-        ];
-
-        let itemSel = "";
-        function render() {
-            productos.forEach((p, i) => {
-                const cont = document.getElementById(`cat-${p.cat}`);
-                let opts = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
-                cont.innerHTML += `<div class="card"><div class="img-container"><img src="${p.img}" class="
+            { cat: "tv", nombre: "Magis TV (Global)", img: "https://
