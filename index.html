@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ NETWORKS - Catálogo Completo</title>
+    <title>SJ NETWORKS - Catálogo Oficial</title>
     <style>
         :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #111; }
         body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
+        /* HEADER */
         .header { padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--cian); background: linear-gradient(to bottom, #1a1a1a, var(--oscuro)); }
         .header-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); object-fit: cover; }
         .tienda-nombre { font-size: 26px; font-weight: 900; margin-top: 15px; text-transform: uppercase; letter-spacing: 2px; }
         .frase-jack { color: var(--magenta); font-size: 14px; font-weight: bold; margin-top: 10px; text-transform: uppercase; }
 
+        /* SECCIONES */
         .seccion-titulo { color: var(--cian); text-transform: uppercase; font-size: 13px; letter-spacing: 2px; margin: 35px 20px 10px; border-left: 5px solid var(--cian); padding-left: 10px; font-weight: 900; }
         .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
 
+        /* TARJETAS */
         .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; display: flex; flex-direction: column; }
         .card:hover { border-color: var(--magenta); transform: translateY(-5px); }
         .img-container { width: 100%; height: 180px; }
@@ -24,9 +27,11 @@
         .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .card-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; min-height: 35px; }
 
+        /* INTERACCIÓN */
         .selector-opciones { width: 100%; padding: 10px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 6px; margin-bottom: 12px; font-size: 12px; font-weight: bold; outline: none; }
         .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 11px; }
 
+        /* MODAL */
         #modal-nombre { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: #1a1a1a; padding: 25px; border-radius: 15px; border: 2px solid var(--magenta); text-align: center; width: 100%; max-width: 320px; }
         .modal-content input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; text-align: center; box-sizing: border-box; }
@@ -41,17 +46,14 @@
         <div class="frase-jack">Tu Entretenimiento lo Encontras en SJ Netbook JACK !</div>
     </div>
 
-    <div class="seccion-titulo">💎 COMBOS VIP & PREMIUM</div>
-    <div id="cat-vip" class="catalogar"></div>
+    <div class="seccion-titulo">🚀 SERVICIOS DESTACADOS</div>
+    <div id="cat-destacado" class="catalogar"></div>
 
-    <div class="seccion-titulo">📶 INTERNET ILIMITADO LURZAVIC</div>
+    <div class="seccion-titulo">📶 INTERNET LURZAVIC</div>
     <div id="cat-internet" class="catalogar"></div>
 
-    <div class="seccion-titulo">🚀 CANALES EN VIVO (IPTV)</div>
-    <div id="cat-iptv" class="catalogar"></div>
-
-    <div class="seccion-titulo">🎮 GAMING & CARGAS</div>
-    <div id="cat-gaming" class="catalogar"></div>
+    <div class="seccion-titulo">🎮 GAMING & DIAMANTES</div>
+    <div id="cat-juegos" class="catalogar"></div>
 
     <div class="seccion-titulo">📺 CUENTAS INDIVIDUALES</div>
     <div id="cat-streaming" class="catalogar"></div>
@@ -59,39 +61,34 @@
     <div id="modal-nombre">
         <div class="modal-content">
             <h3>¡HOLA! 💀</h3>
-            <p>Ingresá tu nombre para enviar el pedido:</p>
+            <p>Ingresá tu nombre para procesar el pedido:</p>
             <input type="text" id="input-nombre" placeholder="Tu nombre o apodo">
-            <button class="btn-confirmar" onclick="enviarWhatsApp()">ENVIAR A WHATSAPP</button>
+            <button class="btn-confirmar" onclick="enviarWhatsApp()">LISTO, ENVIAR A JACK</button>
         </div>
     </div>
 
     <script>
         const productos = [
-            // COMBOS VIP
-            { cat: "vip", nombre: "Combo Disney+HBO+Prime", img: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400", opciones: ["1 Disp ➝ $12.000", "2 Disp ➝ $13.000"] },
-            { cat: "vip", nombre: "Combo Plus (D+ & Star+)", img: "https://i.ibb.co/hZ7X9L1/combo-plus.jpg", opciones: ["Mes Completo ➝ $5.500"] },
-            { cat: "vip", nombre: "Meli+ (Disney+ y Más)", img: "https://i.ibb.co/6y6S3K0/meli.jpg", opciones: ["Mes Completo ➝ $3.500"] },
+            // DESTACADOS / COMBOS
+            { cat: "destacado", nombre: "Combo Disney+HBO+Prime", img: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400", opciones: ["1 Disp ➝ $12.000", "2 Disp ➝ $13.000"] },
+            { cat: "destacado", nombre: "Meli+ (Disney+ y Deezer)", img: "https://i.ibb.co/6y6S3K0/meli.jpg", opciones: ["30 Días ➝ $3.500", "90 Días ➝ $10.000"] },
+            { cat: "destacado", nombre: "Power Signals Live", img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", opciones: ["1 Disp ➝ $7.500", "2 Disp ➝ $10.500", "3 Disp ➝ $13.500"] },
 
             // LURZAVIC
-            { cat: "internet", nombre: "Lurzavic Individual", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg", opciones: ["7 Días ➝ $5.000", "15 Días ➝ $8.000", "30 Días ➝ $10.000", "PRUEBA 3 HORAS GRATIS"] },
-            { cat: "internet", nombre: "Lurzavic Combo TV+Cel", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg", opciones: ["7 Días ➝ $6.000", "15 Días ➝ $9.500", "30 Días ➝ $12.000", "2 Meses ➝ $18.000"] },
-
-            // IPTV
-            { cat: "iptv", nombre: "Power Signals Live", img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", opciones: ["1 Disp ➝ $7.500", "2 Disp ➝ $10.500", "3 Disp ➝ $13.500", "4 Disp ➝ $16.500"] },
+            { cat: "internet", nombre: "Lurzavic Individual", img: "https://images.pexels.com/photos/5077067/pexels-photo-5077067.jpeg", opciones: ["7 Días ➝ $5.000", "15 Días ➝ $8.000", "30 Días ➝ $10.000", "PRUEBA GRATIS"] },
+            { cat: "internet", nombre: "Combo TV+Cel Lurzavic", img: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg", opciones: ["30 Días ➝ $12.000", "60 Días ➝ $18.000"] },
 
             // GAMING
-            { cat: "gaming", nombre: "Diamantes Free Fire", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["100 💎 ➝ $3.000", "310 💎 ➝ $6.000", "520 💎 ➝ $8.000", "1060 💎 ➝ $16.000"] },
+            { cat: "juegos", nombre: "Diamantes Free Fire", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["100 💎 ➝ $3.000", "310 💎 ➝ $6.000", "520 💎 ➝ $8.000", "1060 💎 ➝ $16.000"] },
 
             // STREAMING
             { cat: "streaming", nombre: "Netflix Premium 4K", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400", opciones: ["1 Pantalla ➝ $4.000", "2 Pantallas ➝ $6.000", "3 Pantallas ➝ $10.000"] },
+            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800", "60 Días ➝ $5.400", "90 Días ➝ $8.000"] },
             { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["30 Días ➝ $4.800"] },
             { cat: "streaming", nombre: "Max (HBO) Platinum", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=400", opciones: ["30 Días ➝ $4.500"] },
             { cat: "streaming", nombre: "Amazon Prime Video", img: "https://images.unsplash.com/photo-1585647347384-2593bcc357d3?w=400", opciones: ["30 Días ➝ $3.500"] },
             { cat: "streaming", nombre: "YouTube Premium", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400", opciones: ["30 Días ➝ $3.000"] },
-            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800"] },
             { cat: "streaming", nombre: "Paramount+", img: "https://images.unsplash.com/photo-1627873649417-c67f701f1949?w=400", opciones: ["30 Días ➝ $3.000"] },
-            { cat: "streaming", nombre: "Vix+ Premium", img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400", opciones: ["30 Días ➝ $3.500"] },
-            { cat: "streaming", nombre: "Apple TV+", img: "https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=400", opciones: ["30 Días ➝ $3.500"] },
             { cat: "streaming", nombre: "Crunchyroll Fan", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["30 Días ➝ $3.500"] }
         ];
 
@@ -121,7 +118,7 @@
 
         function enviarWhatsApp() {
             const nombre = document.getElementById('input-nombre').value;
-            if(!nombre) return alert("Ingresá tu nombre para que Jack te atienda.");
+            if(!nombre) return alert("Por favor, ingresá tu nombre.");
             const numero = "5491134361679";
             const texto = `¡Hola JACK! 💀%0A%0AMi nombre es: *${nombre}*%0AQuiero realizar este pedido:%0A${pedidoTemporal}`;
             window.open(`https://wa.me/${numero}?text=${texto}`);
