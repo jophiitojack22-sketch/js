@@ -1,33 +1,104 @@
-     // --- NUEVA SECCIÓN: INTERNET TV + CELULAR (LUZRZAVIC) ---
-    { 
-        n: "📶 LUZRZAVIC - 2 DISP (TV + Cel)", 
-        p: 13500, 
-        img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
-        desc: "7 días: $7.000 | 15 días: $11.000 | 30 días: $13.500. Smart TV, TV Box y Android."
-    },
-    { 
-        n: "📶 LUZRZAVIC - 3 DISPOSITIVOS", 
-        p: 17000, 
-        img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
-        desc: "7 días: $8.500 | 15 días: $13.500 | 30 días: $17.000. Ideal para toda la casa."
-    },
-    { 
-        n: "📶 LUZRZAVIC - 4 DISPOSITIVOS", 
-        p: 20000, 
-        img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
-        popular: true,
-        desc: "7 días: $10.000 | 15 días: $16.000 | 30 días: $20.000. ¡La mejor opción!"
-    },
-    { 
-        n: "💥 OFERTA: 4 DISP - 2 MESES", 
-        p: 28000, 
-        img: "https://img.freepik.com/vector-premium/etiqueta-oferta-especial-roja_24877-50854.jpg",
-        popular: true,
-        desc: "Ahorro total por 60 días. ¡Garantía completa!"
-    },
-    { 
-        n: "⚡ LUZRZAVIC - PRUEBA 3 HORAS", 
-        p: 0, 
-        img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg",
-        desc: "Código Downloader: 7169428. Probá la velocidad en tu Smart TV ahora."
-    },
+ <script>
+    const productos = [
+        // --- SECCIÓN INTERNET LURZAVIC (TV + CELULAR) ---
+        { 
+            n: "⚡ LURZAVIC - PRUEBA 3 HORAS", 
+            p: 0, 
+            img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg",
+            popular: true,
+            desc: "TV + Celular. Código Downloader: 7169428. ¡Probá la potencia ahora!" 
+        },
+        { 
+            n: "📶 LURZAVIC - 2 DISP (TV + Cel)", 
+            p: 13500, 
+            img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
+            desc: "7 días: $7.000 | 15 días: $11.000 | 30 días: $13.500. Smart TV y Android." 
+        },
+        { 
+            n: "📶 LURZAVIC - 3 DISPOSITIVOS", 
+            p: 17000, 
+            img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
+            desc: "7 días: $8.500 | 15 días: $13.500 | 30 días: $17.000. Ideal para la familia." 
+        },
+        { 
+            n: "📶 LURZAVIC - 4 DISPOSITIVOS", 
+            p: 20000, 
+            img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg",
+            desc: "7 días: $10.000 | 15 días: $16.000 | 30 días: $20.000. Máximo rendimiento." 
+        },
+        { 
+            n: "💥 OFERTA: 4 DISP - 2 MESES", 
+            p: 28000, 
+            img: "https://img.freepik.com/vector-premium/etiqueta-oferta-especial-roja_24877-50854.jpg",
+            popular: true,
+            desc: "Lurzavic por 60 días. ¡Garantía total y el mejor precio!" 
+        },
+
+        // --- SECCIÓN INTERNET CELULAR (PERSONAL) ---
+        { 
+            n: "🚀 Internet CEL (30 Días)", 
+            p: 10000, 
+            img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg",
+            desc: "7 días: $5.000 | 15 días: $8.000. TikTok y Redes sin gastar megas." 
+        },
+        { 
+            n: "🎮 Internet GAMING (Próximamente)", 
+            p: 0, 
+            img: "https://img.freepik.com/vector-premium/logotipo-deportes-electronicos-jugador-auriculares_157713-10.jpg",
+            desc: "Baja latencia para tus partidas. ¡Consultá por el tuyo!" 
+        },
+
+        // --- SECCIÓN COMBOS STREAMING ---
+        { 
+            n: "🎁 COMBOS PREMIUM 4 EN 1", 
+            p: 16400, 
+            img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg",
+            desc: "Netflix + Disney + HBO + Prime. 1 Disp: $16.400 | 2 Disp: $18.200" 
+        },
+        { 
+            n: "🎁 COMBOS 3 SERVICIOS", 
+            p: 9400, 
+            img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png",
+            desc: "Netflix + Disney + HBO/Prime. Desde $9.400. ¡Elegí tu combo!" 
+        }
+    ];
+
+    let carrito = [];
+    let total = 0;
+
+    function render(data = productos) {
+        const catalog = document.getElementById('catalog');
+        catalog.innerHTML = '';
+        data.forEach((p, i) => {
+            catalog.innerHTML += `
+                <div class="card" ${p.popular ? 'data-popular="true"' : ''}>
+                    <img src="${p.img}" class="card-img">
+                    <div class="card-info">
+                        <div class="card-title">${p.n}</div>
+                        <div class="card-desc" style="font-size: 11px; color: #888; margin-bottom: 10px;">${p.desc || ''}</div>
+                        <div class="card-price">$${p.p.toLocaleString()}</div>
+                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function add(i) {
+        carrito.push(productos[i]);
+        total += productos[i].p;
+        document.getElementById('total-text').innerText = total.toLocaleString();
+    }
+
+    function sendOrder() {
+        const name = document.getElementById('userName').value || "Cliente";
+        if(carrito.length === 0) return alert("Elegí un servicio primero");
+        
+        let msg = `¡Hola *JSNETWORKS*! 👋%0ASoy *${name}* y quiero contratar:%0A%0A`;
+        carrito.forEach(p => msg += `✅ *${p.n}* - $${p.p.toLocaleString()}%0A`);
+        msg += `%0A💰 *TOTAL: $${total.toLocaleString()}*%0A%0A_Consulta por el Internet Gaming o instalaciones Smart TV_`;
+        
+        window.open(`https://wa.me/5491134361679?text=${msg}`);
+    }
+
+    render();
+</script>
