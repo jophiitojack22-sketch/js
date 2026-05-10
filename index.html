@@ -64,38 +64,4 @@
             { cat: "streaming", nombre: "Paramount+", img: "https://images.unsplash.com/photo-1627873649417-c67f701f1949?w=400", opciones: ["1 Disp ➝ $3.600", "2 Disp ➝ $4.800", "3 Disp ➝ $5.700"] },
             { cat: "streaming", nombre: "Crunchyroll", img: "https://images.unsplash.com/photo-1578632280436-47343e061730?w=400", opciones: ["1 Disp ➝ $4.000", "2 Disp ➝ $6.000", "3 Disp ➝ $10.000"] },
             { cat: "combos", nombre: "Combo 4 en 1 (Completo)", img: "https://i.ibb.co/6y5S3K0/meli.jpg", opciones: ["1 Disp ➝ $9.400"] },
-            { cat: "combos", nombre: "Combo Disney+HBO+Prime", img: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400", opciones: ["1 Disp ➝ $12.000"] },
-            { cat: "juegos", nombre: "Diamantes Free Fire", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["Consultar Packs Disponibles"] }
-        ];
-
-        let pedidoInfo = "";
-        function render() {
-            productos.forEach((p, i) => {
-                const contenedor = document.getElementById(`cat-${p.cat}`);
-                let optionsHtml = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
-                contenedor.innerHTML += `
-                <div class="card">
-                    <div class="img-container"><img src="${p.img}" class="card-img"></div>
-                    <div class="card-body">
-                        <div class="card-title">${p.nombre}</div>
-                        <select id="select-${i}" class="selector-opciones">${optionsHtml}</select>
-                        <button class="btn-comprar" onclick="confirmar(${i})">Comprar ahora</button>
-                    </div>
-                </div>`;
-            });
-        }
-        function confirmar(idx) {
-            const opc = document.getElementById(`select-${idx}`).value;
-            pedidoInfo = `🛒 *${productos[idx].nombre}*%0A📍 Opción: *${opc}*`;
-            document.getElementById('modal-nombre').style.display = 'flex';
-        }
-        function enviarWhatsApp() {
-            const nombre = document.getElementById('input-nombre').value;
-            if(!nombre) return alert("Poné tu nombre para que Jack sepa quién sos.");
-            window.open(`https://wa.me/5491134361679?text=¡Hola JACK! 💀%0A%0AMi nombre: *${nombre}*%0APedido:%0A${pedidoInfo}`);
-            document.getElementById('modal-nombre').style.display = 'none';
-        }
-        window.onload = render;
-    </script>
-</body>
-</html>
+            { cat: "combos", nombre: "Combo Disney+HBO+Prime", img: "
