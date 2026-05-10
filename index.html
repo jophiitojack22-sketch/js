@@ -1,54 +1,13 @@
-     // Lista de tus servicios reales
-    const products = [
-        { n: "Netflix Código TV", p: 14000, img: "https://variety.com/wp-content/uploads/2020/05/netflix-logo.png" },
-        { n: "HBO Max Platino", p: 11000, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
-        { n: "Disney+ Premium", p: 14000, img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f44445346633f5ca97412f0534a7a8.png" },
-        { n: "Amazon Prime Video", p: 6000, img: "https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png" },
-        { n: "Internet Ilimitado (VPN)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg" },
-        { n: "Free Fire 520 💎", p: 8000, img: "https://i.pinimg.com/736x/8d/8a/8d/8d8a8d1b1b1b1b1b1b1b1b1b1b1b1b1b.jpg" }
+     const productos = [
+        // --- COMBOS PREMIUM 4 EN 1 ---
+        { n: "Combo 4 en 1 (1 Disp)", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg" },
+        { n: "Combo 4 en 1 (2 Disp)", p: 18200, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg" },
+
+        // --- COMBOS 3 SERVICIOS ---
+        { n: "Netflix + Disney + HBO (1 Disp)", p: 9400, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
+        { n: "Netflix + Disney + HBO (2 Disp)", p: 11200, img: "https://hbomax-images.warnermediacdn.com/2020-05/square.png" },
+        { n: "Netflix + Disney + Prime (1 Disp)", p: 14000, img: "https://variety.com/wp-content/uploads/2020/05/netflix-logo.png" },
+        { n: "Netflix + Disney + Prime (2 Disp)", p: 15200, img: "https://variety.com/wp-content/uploads/2020/05/netflix-logo.png" },
+        { n: "Disney + HBO + Prime (1 Disp)", p: 12000, img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f44445346633f5ca97412f0534a7a8.png" },
+        { n: "Disney + HBO + Prime (2 Disp)", p: 13000, img: "https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14f44445346633f5ca97412f0534a7a8.png" }
     ];
-
-    let cart = [];
-    let total = 0;
-
-    // Función para mostrar los productos en pantalla
-    function render(data = products) {
-        const catalog = document.getElementById('catalog');
-        catalog.innerHTML = '';
-        data.forEach((p, i) => {
-            catalog.innerHTML += `
-                <div class="card">
-                    <img src="${p.img}" class="card-img">
-                    <div class="card-info">
-                        <div class="card-title">${p.n}</div>
-                        <div class="card-price">$${p.p.toLocaleString()}</div>
-                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
-                    </div>
-                </div>`;
-        });
-    }
-
-    // Sumar al carrito
-    function add(i) {
-        cart.push(products[i]);
-        total += products[i].p;
-        document.getElementById('total-text').innerText = total.toLocaleString();
-    }
-
-    // Buscador en tiempo real
-    function filterProducts() {
-        const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = products.filter(p => p.n.toLowerCase().includes(term));
-        render(filtered);
-    }
-
-    // Finalizar pedido por WhatsApp
-    function sendOrder() {
-        const name = document.getElementById('userName').value || "Cliente";
-        let msg = `¡Hola *JSNETWORKS*! 👋%0ASoy *${name}* y quiero comprar:%0A%0A`;
-        cart.forEach(p => msg += `✅ *${p.n}* - $${p.p.toLocaleString()}%0A`);
-        msg += `%0A💰 *TOTAL: $${total.toLocaleString()}*`;
-        window.open(`https://wa.me/5491134361679?text=${msg}`);
-    }
-
-    render(); // Iniciar catálogo al cargar
