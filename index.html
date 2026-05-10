@@ -3,59 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSNETWORKS - Catálogo</title>
+    <title>JSNETWORKS - Tu Mundo Digital</title>
     <style>
-        :root { --cian: #00d4ff; --oscuro: #0a0a0a; }
-        body { background: var(--oscuro); color: white; font-family: sans-serif; padding: 20px; text-align: center; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: #1a1a1a; border-radius: 10px; padding: 15px; border: 1px solid #333; }
-        .card[data-popular="true"] { border-color: var(--cian); box-shadow: 0 0 15px var(--cian); }
-        .card-img { width: 100%; border-radius: 8px; height: 150px; object-fit: cover; }
-        .btn-add { background: var(--cian); border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; color: black; }
-        .flotacion { position: fixed; bottom: 20px; right: 20px; background: var(--cian); color: black; padding: 15px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+        :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --gris-card: #141414; }
+        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; text-align: center; margin: 0; }
+        
+        /* HEADER ESTILO NEÓN */
+        .header-logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--cian); box-shadow: 0 0 20px var(--cian); margin-bottom: 5px; }
+        .tienda-nombre { color: var(--cian); margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px var(--cian); }
+        .tienda-eslogan { font-size: 14px; color: #aaa; margin-top: 5px; margin-bottom: 30px; }
+
+        /* BUSCADOR Y BOTONES */
+        .search-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .search-input { width: 70%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #222; color: white; font-size: 14px; }
+        .btn-seccion { padding: 12px; border-radius: 8px; border: 1px solid var(--cian); background: transparent; color: var(--cian); font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 12px; transition: 0.3s; }
+        .btn-seccion:hover { background: var(--cian); color: black; box-shadow: 0 0 15px var(--cian); }
+
+        /* TÍTULOS DE SECCIÓN */
+        .seccion-titulo { color: var(--magenta); text-transform: uppercase; letter-spacing: 3px; font-size: 18px; text-shadow: 0 0 10px var(--magenta); margin: 40px 0 20px; }
+
+        /* CATÁLOGO EN GRILLA */
+        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+        /* TARJETA VISUAL ESTILO LUU STREAM (Imágen de Fondo Full) */
+        .card { 
+            position: relative; 
+            background-size: cover; 
+            background-position: center; 
+            border-radius: 15px; 
+            min-height: 400px; 
+            border: 1px solid #333; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card[data-popular="true"] { border-color: var(--magenta); box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
+        .card:hover { transform: translateY(-5px); border-color: var(--cian); }
+
+        /* Capa degradada inferior para que se lea el texto */
+        .card-overlay { 
+            position: absolute; 
+            bottom: 0; left: 0; right: 0; top: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+
+        /* Información del producto (Nombre, Desc, Precio) */
+        .card-info { position: relative; z-index: 2; padding: 20px; text-align: left; }
+        .card-title { font-size: 20px; font-weight: bold; color: white; margin: 0 0 5px; }
+        .card-desc { font-size: 12px; color: #ccc; margin: 0 0 15px; min-height: 30px; line-height: 1.4; }
+        .card-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .card-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .card-price { font-size: 22px; color: var(--cian); font-weight: bold; text-shadow: 0 0 10px var(--cian); }
+
+        /* BOTÓN COMPRAR */
+        .btn-add { 
+            background: linear-gradient(45deg, #00d4ff, #0099ff); 
+            border: none; 
+            padding: 12px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: bold; 
+            color: black; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: 0.3s;
+        }
+        .btn-add:hover { box-shadow: 0 0 20px var(--cian); transform: scale(1.02); }
+
+        /* BOTÓN FLOTANTE PEDIDO TOTAL */
+        .flotacion { 
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            background: var(--magenta); 
+            color: black; 
+            padding: 15px 25px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(255,0,255,0.5); 
+            z-index: 100;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <h1 style="color: var(--cian);">JSNETWORKS</h1>
-    <input type="text" id="searchInput" placeholder="Buscar servicio..." onkeyup="filterProducts()" style="width: 90%; max-width: 400px; padding: 12px; border-radius: 8px; border: none; margin-bottom: 20px;">
+    <img src="https://img.freepik.com/vector-premium/mascota-esports-jugador-auriculares-microfono_157713-3.jpg" class="header-logo" alt="Logotipo JSNETWORKS">
+    <h1 class="tienda-nombre">JSNETWORKS</h1>
+    <p class="tienda-eslogan">Servicios Digitales | Tu entretenimiento ilimitado</p>
     
-    <div id="catalogar" class="catalogar"></div>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar Netflix, Internet..." onkeyup="filterProducts()" class="search-input">
+    </div>
+    
+    <div class="seccion-titulo">Mundo Entretenimiento</div>
+    <div id="catalogar-streaming" class="catalogar"></div>
+
+    <div class="seccion-titulo">Internet Ilimitado & VPN</div>
+    <div id="catalogar-internet" class="catalogar"></div>
 
     <div class="flotacion" onclick="sendOrder()">
-        🛒 TOTAL: $<span id="total-text">0</span>
+        🛒 PEDIR TOTAL: $<span id="total-text">0</span>
     </div>
 
     <script>
         const productos = [
-            { n: "⚡ LURZAVIC - PRUEBA 3 HORAS", p: 0, img: "https://img.freepik.com/vector-premium/etiqueta-prueba-gratuita-diseno-plano_23-2149345028.jpg", popular: true, desc: "Código Downloader: 7169428" },
-            { n: "📶 LURZAVIC - 2 DISP (TV+Cel)", p: 13500, img: "https://img.freepik.com/vector-premium/icono-smart-tv-diseno-plano-ilustracion-vectorial_1102332-1083.jpg", desc: "7d: $7.000 | 15d: $11.000 | 30d: $13.500" },
-            { n: "🚀 Internet CEL (30 Días)", p: 10000, img: "https://img.freepik.com/vector-premium/logotipo-vpn-proteccion-internet-privacidad-seguridad-red-datos-seguros_651234-111.jpg", desc: "TikTok y Redes sin gastar tus megas" },
-            { n: "🎁 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.vrt.be/width1280/2024/05/08/6034633f-0d36-11ef-9387-02b6088fd4eb.jpg", desc: "Netflix + Disney + HBO + Prime" }
+            // --- SECCIÓN: ENTRETIENIMIENTO (Fotos Visuales Full) ---
+            { seccion: "streaming", n: "📺 NETFLIX PREMIUM", p: 7500, img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=600&auto=format&fit=crop", desc: "1 Pantalla original. Calidad 4K HDR. Renovación mensual." },
+            { seccion: "streaming", n: "📺 DISNEY+ PREMIUM", p: 4800, img: "https://images.unsplash.com/photo-1613946069412-38f7f1ff0b65?q=80&w=600&auto=format&fit=crop", desc: "Star+ incluido. Series y películas exclusivas. 4K." },
+            { seccion: "streaming", n: "📺 HBO MAX / MAX", p: 4500, img: "https://images.unsplash.com/photo-1623038662991-3829ffdf009b?q=80&w=600&auto=format&fit=crop", desc: "Universo DC, Harry Potter y series HBO Original." },
+            
+            // --- SECCIÓN: COMBOS (FOTO DE AMBIENTE CINE + LOGOS) ---
+            { seccion: "streaming", n: "🎁 COMBOS PREMIUM 4 EN 1", p: 16400, img: "https://images.unsplash.com/photo-1595769816263-9b910be24d53?q=80&w=600&auto=format&fit=crop", popular: true, desc: "Netflix + Disney + HBO + Prime. ¡Todo en uno!" },
+
+            // --- SECCIÓN: INTERNET (Fotos de VPN/Smart TV con Personaje) ---
+            { seccion: "internet", n: "📶 LURZAVIC Smart TV+Cel", p: 13500, img: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=600&auto=format&fit=crop", desc: "TV Box, Fire TV, Google TV. Navegá sin límites." },
+            { seccion: "internet", n: "🚀 Internet CEL (Personal)", p: 10000, img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=600&auto=format&fit=crop", desc: "VPN para celular. TikTok, Redes y YouTube ilimitado." },
+            { seccion: "internet", n: "🎮 Internet GAMING (Pronto)", p: 0, img: "https://images.unsplash.com/photo-1538370965046-79c0d6907d47?q=80&w=600&auto=format&fit=crop", desc: "Optimizado para bajo ping en juegos online. ¡Consultá!" }
         ];
 
         let carrito = [];
         let total = 0;
 
         function render(datos = productos) {
-            const container = document.getElementById('catalogar');
-            container.innerHTML = '';
+            const containerStreaming = document.getElementById('catalogar-streaming');
+            const containerInternet = document.getElementById('catalogar-internet');
+            
+            containerStreaming.innerHTML = '';
+            containerInternet.innerHTML = '';
+            
             datos.forEach((prod, i) => {
-                container.innerHTML += `
-                    <div class="card" ${prod.popular ? 'data-popular="true"' : ''}>
-                        <img src="${prod.img}" class="card-img">
-                        <h3>${prod.n}</h3>
-                        <p style="font-size: 12px; color: #aaa;">${prod.desc}</p>
-                        <p style="color: var(--cian); font-weight: bold;">$${prod.p.toLocaleString()}</p>
-                        <button class="btn-add" onclick="add(${i})">AÑADIR</button>
+                const cardHTML = `
+                    <div class="card" ${prod.popular ? 'data-popular="true"' : ''} style="background-image: url('${prod.img}');">
+                        <div class="card-overlay"></div>
+                        <div class="card-info">
+                            <h3 class="card-title">${prod.n}</h3>
+                            <p class="card-desc">${prod.desc}</p>
+                            <div class="card-price-row">
+                                <span class="card-label">Precio ARS</span>
+                                <span class="card-price">$${prod.p.toLocaleString('es-AR')}</span>
+                            </div>
+                            <button class="btn-add" onclick="add(${i})">AÑADIR AL PEDIDO</button>
+                        </div>
                     </div>`;
+                
+                if (prod.seccion === "streaming") {
+                    containerStreaming.innerHTML += cardHTML;
+                } else if (prod.seccion === "internet") {
+                    containerInternet.innerHTML += cardHTML;
+                }
             });
         }
 
         function add(i) {
             carrito.push(productos[i]);
             total += productos[i].p;
-            document.getElementById('total-text').innerText = total.toLocaleString();
+            document.getElementById('total-text').innerText = total.toLocaleString('es-AR');
         }
 
         function filterProducts() {
