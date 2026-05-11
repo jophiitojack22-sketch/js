@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ Netbook Jack - Catálogo</title>
+    <title>SJ Netbook Jack - Tienda Oficial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -15,6 +15,7 @@
                         oscuro: '#1D2129',
                         gris: '#86909C',
                         fondo: '#F2F3F5',
+                        whatsapp: '#25D366',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -29,7 +30,7 @@
             .borde-redondo { border-radius: 12px; }
             .texto-azul { color: #165DFF; }
             .fondo-azul { background-color: #165DFF; }
-            .fondo-azul-hover { background-color: #0F48C9; }
+            .btn-hover { transition: all 0.3s ease; }
         }
     </style>
 </head>
@@ -38,240 +39,195 @@
     <!-- ENCABEZADO -->
     <header class="bg-white sombra-suave sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-3 md:mb-0">
-                <h1 class="text-[22px] font-bold text-oscuro">SJ Netbook Jack</h1>
-                <p class="text-sm text-gris">Tu mundo de entretenimiento</p>
+            <div class="mb-3 md:mb-0 text-center md:text-left">
+                <h1 class="text-[24px] font-bold text-oscuro">SJ Netbook Jack</h1>
+                <p class="text-sm text-gris">Tu mundo de entretenimiento - Cuentas y Servicios</p>
             </div>
-            <nav class="flex gap-6">
-                <a href="#streaming" class="font-medium hover:text-principal transition">Streaming</a>
-                <a href="#internet" class="font-medium hover:text-principal transition">Internet</a>
-                <a href="#combos" class="font-medium hover:text-principal transition">Combos</a>
-                <a href="#freefire" class="font-medium hover:text-principal transition">Free Fire</a>
-                <a href="#signal" class="font-medium hover:text-principal transition">Power Signals</a>
+            <nav class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm md:text-base">
+                <a href="#streaming" class="font-medium hover:text-principal transition">📺 Streaming</a>
+                <a href="#internet" class="font-medium hover:text-principal transition">🌐 Internet</a>
+                <a href="#combos" class="font-medium hover:text-principal transition">🎁 Combos</a>
+                <a href="#freefire" class="font-medium hover:text-principal transition">💎 Free Fire</a>
+                <a href="#signal" class="font-medium hover:text-principal transition">📶 Power Signals</a>
             </nav>
         </div>
     </header>
 
     <!-- CONTENEDOR PRINCIPAL -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
 
-        <!-- AVISO PRINCIPAL -->
-        <div class="bg-white borde-redondo p-6 mb-8 sombra-suave text-center">
-            <h2 class="text-[24px] font-bold text-oscuro mb-2">📋 CATÁLOGO OFICIAL</h2>
-            <p class="text-gris">Todos nuestros productos y precios actualizados - SJ Netbook Jack</p>
+        <!-- AVISO -->
+        <div class="bg-white borde-redondo p-6 mb-8 sombra-suave text-center border-l-4 border-principal">
+            <h2 class="text-[22px] font-bold text-oscuro mb-2">🛒 CATÁLOGO DE PRODUCTOS</h2>
+            <p class="text-gris">Elegí la opción que querés, presioná COMPRAR y te contactaremos por WhatsApp</p>
         </div>
 
 
-        <!-- 📺 SERVICIOS STREAMING -->
-        <section id="streaming" class="mb-12">
-            <h2 class="text-[20px] font-bold mb-6 flex items-center gap-2">
-                <i class="fa fa-play-circle texto-azul"></i> SERVICIOS DE STREAMING
+        <!-- 📺 SERVICIOS DE STREAMING -->
+        <section id="streaming" class="mb-16">
+            <h2 class="text-[22px] font-bold mb-8 flex items-center gap-3">
+                <i class="fa fa-play-circle texto-azul text-2xl"></i> SERVICIOS DE STREAMING
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-                <!-- Netflix -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">Netflix</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                <!-- NETFLIX -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:shadow-lg btn-hover">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-16 mx-auto mb-5 object-contain" alt="Netflix">
+                    <h3 class="text-xl font-bold text-center mb-4">Netflix</h3>
+                    
+                    <!-- OPCIONES ELEGIBLES -->
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="netflix" value="Netflix - 1 Dispositivo - $6.000" class="accent-principal">
                             <span>1 Dispositivo</span>
-                            <span class="font-bold text-oscuro">$ 6.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span class="font-bold ml-auto">$ 6.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="netflix" value="Netflix - 2 Dispositivos - $8.000" class="accent-principal">
                             <span>2 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 8.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
+                            <span class="font-bold ml-auto">$ 8.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="netflix" value="Netflix - 3 Dispositivos - $12.000" class="accent-principal">
                             <span>3 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 12.000</span>
-                        </div>
+                            <span class="font-bold ml-auto">$ 12.000</span>
+                        </label>
                     </div>
+
+                    <button onclick="comprar('Netflix', document.querySelector('input[name=netflix]:checked')?.value || 'Elegir opción')" 
+                            class="w-full bg-principal text-white py-2.5 rounded-lg font-bold hover:bg-[#0F48C9] btn-hover">
+                        🛒 COMPRAR
+                    </button>
                 </div>
 
-                <!-- Disney+ -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">Disney+</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                <!-- DISNEY+ -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:shadow-lg btn-hover">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="h-16 mx-auto mb-5 object-contain" alt="Disney+">
+                    <h3 class="text-xl font-bold text-center mb-4">Disney+</h3>
+                    
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="disney" value="Disney+ - 1 Dispositivo - $5.000" class="accent-principal">
                             <span>1 Dispositivo</span>
-                            <span class="font-bold text-oscuro">$ 5.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span class="font-bold ml-auto">$ 5.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="disney" value="Disney+ - 2 Dispositivos - $7.000" class="accent-principal">
                             <span>2 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 7.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
+                            <span class="font-bold ml-auto">$ 7.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="disney" value="Disney+ - 3 Dispositivos - $14.000" class="accent-principal">
                             <span>3 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 14.000</span>
-                        </div>
+                            <span class="font-bold ml-auto">$ 14.000</span>
+                        </label>
                     </div>
+
+                    <button onclick="comprar('Disney+', document.querySelector('input[name=disney]:checked')?.value || 'Elegir opción')" 
+                            class="w-full bg-principal text-white py-2.5 rounded-lg font-bold hover:bg-[#0F48C9] btn-hover">
+                        🛒 COMPRAR
+                    </button>
                 </div>
 
-                <!-- HBO Max -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/HBO_Max_2023.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">HBO Max</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                <!-- HBO MAX -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:shadow-lg btn-hover">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/HBO_Max_2023.svg" class="h-16 mx-auto mb-5 object-contain" alt="HBO Max">
+                    <h3 class="text-xl font-bold text-center mb-4">HBO Max</h3>
+                    
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="hbo" value="HBO Max - 1 Dispositivo - $5.000" class="accent-principal">
                             <span>1 Dispositivo</span>
-                            <span class="font-bold text-oscuro">$ 5.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span class="font-bold ml-auto">$ 5.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="hbo" value="HBO Max - 2 Dispositivos - $8.000" class="accent-principal">
                             <span>2 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 8.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
+                            <span class="font-bold ml-auto">$ 8.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="hbo" value="HBO Max - 3 Dispositivos - $12.000" class="accent-principal">
                             <span>3 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 12.000</span>
-                        </div>
+                            <span class="font-bold ml-auto">$ 12.000</span>
+                        </label>
                     </div>
+
+                    <button onclick="comprar('HBO Max', document.querySelector('input[name=hbo]:checked')?.value || 'Elegir opción')" 
+                            class="w-full bg-principal text-white py-2.5 rounded-lg font-bold hover:bg-[#0F48C9] btn-hover">
+                        🛒 COMPRAR
+                    </button>
                 </div>
 
-                <!-- Crunchyroll -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Crunchyroll_logo_2018.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">Crunchyroll</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                <!-- CRUNCHYROLL -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:shadow-lg btn-hover">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Crunchyroll_logo_2018.svg" class="h-16 mx-auto mb-5 object-contain" alt="Crunchyroll">
+                    <h3 class="text-xl font-bold text-center mb-4">Crunchyroll</h3>
+                    
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="crunchyroll" value="Crunchyroll - 1 Dispositivo - $4.000" class="accent-principal">
                             <span>1 Dispositivo</span>
-                            <span class="font-bold text-oscuro">$ 4.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span class="font-bold ml-auto">$ 4.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="crunchyroll" value="Crunchyroll - 2 Dispositivos - $6.000" class="accent-principal">
                             <span>2 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 6.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
+                            <span class="font-bold ml-auto">$ 6.000</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="crunchyroll" value="Crunchyroll - 3 Dispositivos - $10.000" class="accent-principal">
                             <span>3 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 10.000</span>
-                        </div>
+                            <span class="font-bold ml-auto">$ 10.000</span>
+                        </label>
                     </div>
+
+                    <button onclick="comprar('Crunchyroll', document.querySelector('input[name=crunchyroll]:checked')?.value || 'Elegir opción')" 
+                            class="w-full bg-principal text-white py-2.5 rounded-lg font-bold hover:bg-[#0F48C9] btn-hover">
+                        🛒 COMPRAR
+                    </button>
                 </div>
 
-                <!-- Paramount+ -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Paramount%2B_logo_2021.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">Paramount+</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                <!-- PARAMOUNT+ -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:shadow-lg btn-hover">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Paramount%2B_logo_2021.svg" class="h-16 mx-auto mb-5 object-contain" alt="Paramount+">
+                    <h3 class="text-xl font-bold text-center mb-4">Paramount+</h3>
+                    
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="paramount" value="Paramount+ - 1 Dispositivo - $3.600" class="accent-principal">
                             <span>1 Dispositivo</span>
-                            <span class="font-bold text-oscuro">$ 3.600</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span class="font-bold ml-auto">$ 3.600</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="paramount" value="Paramount+ - 2 Dispositivos - $4.800" class="accent-principal">
                             <span>2 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 4.800</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
+                            <span class="font-bold ml-auto">$ 4.800</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="paramount" value="Paramount+ - 3 Dispositivos - $5.700" class="accent-principal">
                             <span>3 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 5.700</span>
-                        </div>
+                            <span class="font-bold ml-auto">$ 5.700</span>
+                        </label>
                     </div>
+
+                    <button onclick="comprar('Paramount+', document.querySelector('input[name=paramount]:checked')?.value || 'Elegir opción')" 
+                            class="w-full bg-principal text-white py-2.5 rounded-lg font-bold hover:bg-[#0F48C9] btn-hover">
+                        🛒 COMPRAR
+                    </button>
                 </div>
 
-                <!-- Prime Video -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Amazon_Prime_Video_logo.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">Prime Video</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                <!-- PRIME VIDEO -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:shadow-lg btn-hover">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Amazon_Prime_Video_logo.svg" class="h-16 mx-auto mb-5 object-contain" alt="Prime Video">
+                    <h3 class="text-xl font-bold text-center mb-4">Prime Video</h3>
+                    
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="prime" value="Prime Video - 1 Dispositivo - $3.500" class="accent-principal">
                             <span>1 Dispositivo</span>
-                            <span class="font-bold text-oscuro">$ 3.500</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
+                            <span class="font-bold ml-auto">$ 3.500</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-fondo">
+                            <input type="radio" name="prime" value="Prime Video - 2 Dispositivos - $5.000" class="accent-principal">
                             <span>2 Dispositivos</span>
-                            <span class="font-bold text-oscuro">$ 5.000</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Spotify -->
-                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" class="h-14 mx-auto mb-4 object-contain">
-                    <h3 class="text-lg font-bold text-center mb-3">Spotify Premium</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
-                            <span>1 Mes</span>
-                            <span class="font-bold text-oscuro">$ 5.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-1">
-                            <span>3 Meses</span>
-                            <span class="font-bold text-oscuro">$ 15.000</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- 🌐 INTERNET ILIMITADO -->
-        <section id="internet" class="mb-12">
-            <h2 class="text-[20px] font-bold mb-6 flex items-center gap-2">
-                <i class="fa fa-wifi texto-azul"></i> INTERNET ILIMITADO
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-                <!-- Plan Personal -->
-                <div class="bg-white borde-redondo p-6 sombra-suave">
-                    <h3 class="text-lg font-bold mb-4 text-center">📶 PLAN PERSONAL</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                            <span>7 Días</span>
-                            <span class="font-bold">$ 5.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                            <span>15 Días</span>
-                            <span class="font-bold">$ 8.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2">
-                            <span>30 Días</span>
-                            <span class="font-bold">$ 12.000</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Smart TV / TV BOX -->
-                <div class="bg-white borde-redondo p-6 sombra-suave">
-                    <h3 class="text-lg font-bold mb-4 text-center">📺 SMART TV / TV BOX</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                            <span>7 Días</span>
-                            <span class="font-bold">$ 6.000</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                            <span>15 Días</span>
-                            <span class="font-bold">$ 9.500</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2">
-                            <span>30 Días</span>
-                            <span class="font-bold">$ 15.000</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- 📦 COMBOS -->
-        <section id="combos" class="mb-12">
-            <h2 class="text-[20px] font-bold mb-6 flex items-center gap-2">
-                <i class="fa fa-shopping-basket texto-azul"></i> COMBOS ESPECIALES
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-                <div class="bg-white borde-redondo p-5 sombra-suave border-l-4 border-principal">
-                    <h3 class="font-bold text-center mb-2">📱 COMBO 1 DISPOSITIVO</h3>
-                    <p class="text-sm text-center text-gris mb-3">Netflix + Disney+ + HBO Max + Prime Video</p>
-                    <p class="text-center text-lg font-bold texto-azul">$ 15.000</p>
-                </div>
-
-                <div class="bg-white borde-redondo p-5 sombra-suave border-l-4 border-principal">
-                    <h3 class="font-bold text-center mb-2">📱📱 COMBO 2 DISPOSITIVOS</h3>
-                    <p class="text-sm text-center text-gris mb-3">Netflix + Disney+ + HBO Max + Prime Video</p>
-                    <p class="text-center text-lg font-bold texto-azul">$ 22.000</p>
-                </div>
-
-                <div class="bg-white borde-redondo p-5 sombra-suave border-l-4 border-principal">
-                    <h3 class="font-bold text-center mb-2">📱📱📱 COMBO 3 DISPOSITIVOS
+                            <span class="
