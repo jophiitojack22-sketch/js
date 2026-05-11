@@ -3,181 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ NETBOOK JACK | Tienda Oficial</title>
+    <title>SJ NETBOOK JACK | Catálogo Premium</title>
     <link href="https://cloudflare.com" rel="stylesheet">
     <style>
         :root {
-            --primary: #00f2ff; /* Cian Neón */
-            --secondary: #7000ff; /* Morado Eléctrico */
-            --bg: #050505;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary: #00f2ff;
+            --accent: #7000ff;
+            --bg: #08080c;
+            --card: #12121a;
             --text: #ffffff;
         }
 
         body {
             background-color: var(--bg);
-            background-image: radial-gradient(circle at top right, #1a1033, transparent),
-                              radial-gradient(circle at bottom left, #05161a, transparent);
+            background-image: radial-gradient(circle at 0% 0%, #161625 0%, transparent 50%),
+                              radial-gradient(circle at 100% 100%, #0a0a15 0%, transparent 50%);
             color: var(--text);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .container { max-width: 450px; width: 100%; }
+        .container { max-width: 480px; width: 100%; }
 
-        /* Header Estilo LuuStream */
-        .profile { text-align: center; margin-bottom: 40px; }
-        .logo-circle {
-            width: 100px; height: 100px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            margin: 0 auto 15px;
+        /* Header Estilo Gamer */
+        .profile { text-align: center; margin-bottom: 30px; }
+        .logo-box {
+            width: 80px; height: 80px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 20px; margin: 0 auto 15px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; font-weight: bold;
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+            font-size: 2rem; font-weight: 900; color: white;
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
         }
 
-        h1 { font-size: 1.4rem; margin: 0; letter-spacing: 1px; }
-        .tagline { color: #888; font-size: 0.9rem; margin-top: 5px; }
+        h1 { font-size: 1.5rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .badge-verified { color: var(--primary); font-size: 0.9rem; margin-top: 5px; display: block; }
 
-        /* Secciones */
-        .section-title {
-            font-size: 0.8rem; font-weight: 800; color: var(--primary);
-            text-transform: uppercase; letter-spacing: 2px;
-            margin: 30px 0 15px; padding-left: 10px;
-            border-left: 2px solid var(--primary);
+        /* Estilo de Secciones y Desplegables */
+        .section-label {
+            font-size: 0.75rem; color: #666; text-transform: uppercase;
+            letter-spacing: 2px; margin: 25px 0 10px 5px; font-weight: bold;
         }
 
-        /* Tarjetas de Producto */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 18px;
-            padding: 16px;
-            margin-bottom: 12px;
-            display: flex; align-items: center;
-            transition: all 0.3s ease;
-            text-decoration: none; color: white;
+        details {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px; margin-bottom: 10px;
+            overflow: hidden; transition: all 0.3s;
         }
 
-        .card:hover {
-            transform: scale(1.02);
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+        summary {
+            padding: 18px; list-style: none; display: flex;
+            align-items: center; cursor: pointer; font-weight: 600;
         }
 
-        .icon-box {
-            width: 45px; height: 45px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            display: flex; justify-content: center; align-items: center;
-            margin-right: 15px; font-size: 1.4rem;
+        summary::-webkit-details-marker { display: none; }
+
+        .icon-service {
+            width: 40px; height: 40px; border-radius: 10px;
+            margin-right: 15px; display: flex; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.3); font-size: 1.2rem;
         }
 
-        .info { flex-grow: 1; }
-        .info h3 { margin: 0; font-size: 0.95rem; font-weight: 600; }
-        .info p { margin: 2px 0 0; font-size: 0.75rem; color: #aaa; }
+        .price-from { margin-left: auto; color: var(--primary); font-weight: bold; }
 
-        .price-tag {
-            background: rgba(0, 242, 255, 0.1);
-            color: var(--primary);
-            padding: 6px 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 0.85rem;
+        /* Contenido de los precios */
+        .details-content {
+            padding: 0 18px 18px;
+            background: rgba(0,0,0,0.2);
         }
 
-        /* Botón Flotante de Contacto */
-        .cta-button {
+        .price-row {
+            display: flex; justify-content: space-between;
+            padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem; color: #ccc;
+        }
+
+        .price-row strong { color: #00ff88; }
+
+        /* Botón WhatsApp */
+        .btn-ws {
             position: sticky; bottom: 20px;
-            background: linear-gradient(45deg, #25d366, #128c7e);
-            color: white; width: 100%; padding: 15px;
-            border-radius: 50px; text-align: center;
-            text-decoration: none; font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            margin-top: 20px; display: block;
+            background: #25d366; color: white;
+            padding: 16px; border-radius: 50px;
+            text-align: center; text-decoration: none;
+            font-weight: bold; display: block; margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
+
+        /* Colores Marcas */
+        .nfx { color: #E50914; }
+        .dsy { color: #0063e5; }
+        .hbo { color: #5822b4; }
+        .cry { color: #ff6600; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="profile">
-            <div class="logo-circle">SJ</div>
+            <div class="logo-box">SJ</div>
             <h1>SJ NETBOOK JACK</h1>
-            <p class="tagline">Streaming • Internet • Gaming</p>
+            <span class="badge-verified"><i class="fas fa-check-circle"></i> VENDEDOR AUTORIZADO</span>
         </div>
 
-        <div class="section-title">📺 SERVICIOS DE STREAMING</div>
-        
-        <div class="card">
-            <div class="icon-box" style="color: #E50914;"><i class="fab fa-netflix"></i></div>
-            <div class="info">
-                <h3>Netflix Premium</h3>
-                <p>Desde 1 Disp. hasta 3 Disp.</p>
+        <div class="section-label">📺 SERVICIOS DE STREAMING</div>
+
+        <details>
+            <summary>
+                <div class="icon-service nfx"><i class="fab fa-netflix"></i></div>
+                NETFLIX PREMIUM
+                <div class="price-from">$6.000</div>
+            </summary>
+            <div class="details-content">
+                <div class="price-row"><span>1 Dispositivo</span> <strong>$6.000</strong></div>
+                <div class="price-row"><span>2 Dispositivos</span> <strong>$8.000</strong></div>
+                <div class="price-row"><span>3 Dispositivos</span> <strong>$12.000</strong></div>
             </div>
-            <div class="price-tag">$6.000+</div>
-        </div>
+        </details>
 
-        <div class="card">
-            <div class="icon-box" style="color: #0063e5;"><i class="fas fa-play"></i></div>
-            <div class="info">
-                <h3>Disney+</h3>
-                <p>Películas y Series ilimitadas</p>
+        <details>
+            <summary>
+                <div class="icon-service dsy"><i class="fas fa-play"></i></div>
+                DISNEY+
+                <div class="price-from">$5.000</div>
+            </summary>
+            <div class="details-content">
+                <div class="price-row"><span>1 Dispositivo</span> <strong>$5.000</strong></div>
+                <div class="price-row"><span>2 Dispositivos</span> <strong>$7.000</strong></div>
+                <div class="price-row"><span>3 Dispositivos</span> <strong>$14.000</strong></div>
             </div>
-            <div class="price-tag">$5.000+</div>
-        </div>
+        </details>
 
-        <div class="section-title">📦 COMBOS POR DISPOSITIVOS</div>
+        <div class="section-label">📦 COMBOS POR DISPOSITIVOS</div>
 
-        <div class="card" style="border: 1px solid var(--secondary);">
-            <div class="icon-box" style="color: var(--secondary);"><i class="fas fa-rocket"></i></div>
-            <div class="info">
-                <h3>Combo 1 Dispositivo</h3>
-                <p>Netflix + Disney + HBO + Prime</p>
+        <details>
+            <summary>
+                <div class="icon-service" style="color: var(--primary)"><i class="fas fa-box-open"></i></div>
+                COMBOS FULL
+                <div class="price-from">$15.000</div>
+            </summary>
+            <div class="details-content">
+                <div class="price-row"><span>Combo 1 Disp (N+D+H+P)</span> <strong>$15.000</strong></div>
+                <div class="price-row"><span>Combo 2 Disp (N+D+H+P)</span> <strong>$22.000</strong></div>
+                <div class="price-row"><span>Combo 3 Disp (N+D+H+P)</span> <strong>$32.000</strong></div>
+                <div class="price-row"><span>Combo Anime (N+C)</span> <strong>$9.000</strong></div>
             </div>
-            <div class="price-tag">$15.000</div>
-        </div>
+        </details>
 
-        <div class="card">
-            <div class="icon-box" style="color: #ff6600;"><i class="fas fa-tv"></i></div>
-            <div class="info">
-                <h3>Combo Anime</h3>
-                <p>Crunchyroll + Netflix</p>
+        <div class="section-label">🌐 INTERNET ILIMITADO</div>
+
+        <details>
+            <summary>
+                <div class="icon-service" style="color: #00ff88"><i class="fas fa-wifi"></i></div>
+                PLAN CELULAR / TV
+                <div class="price-from">$5.000</div>
+            </summary>
+            <div class="details-content">
+                <div class="price-row"><span>Personal (7 días)</span> <strong>$5.000</strong></div>
+                <div class="price-row"><span>Personal (30 días)</span> <strong>$12.000</strong></div>
+                <div class="price-row"><span>Smart TV (30 días)</span> <strong>$15.000</strong></div>
             </div>
-            <div class="price-tag">$9.000</div>
-        </div>
+        </details>
 
-        <div class="section-title">🌐 INTERNET ILIMITADO</div>
+        <div class="section-label">💎 GAMING & SEÑALES</div>
 
-        <div class="card">
-            <div class="icon-box" style="color: #00ff88;"><i class="fas fa-wifi"></i></div>
-            <div class="info">
-                <h3>Plan Personal / Smart TV</h3>
-                <p>7, 15 o 30 días</p>
+        <details>
+            <summary>
+                <div class="icon-service" style="color: #ffcc00"><i class="fas fa-gem"></i></div>
+                FREE FIRE DIAMANTES
+            </summary>
+            <div class="details-content">
+                <div class="price-row"><span>100 Diamantes</span> <strong>$3.000</strong></div>
+                <div class="price-row"><span>520 Diamantes</span> <strong>$8.500</strong></div>
+                <div class="price-row"><span>1060 Diamantes</span> <strong>$12.000</strong></div>
             </div>
-            <div class="price-tag">$5.000+</div>
-        </div>
+        </details>
 
-        <div class="section-title">💎 GAMING</div>
-
-        <div class="card">
-            <div class="icon-box" style="color: #ffcc00;"><i class="fas fa-gem"></i></div>
-            <div class="info">
-                <h3>Diamantes Free Fire</h3>
-                <p>Recargas desde 100 hasta 1060</p>
-            </div>
-            <div class="price-tag">$3.000+</div>
-        </div>
-
-        <a href="https://wa.me" class="cta-button">
-            <i class="fab fa-whatsapp"></i> CONSULTAR CATÁLOGO COMPLETO
+        <a href="https://wa.me" class="btn-ws">
+            <i class="fab fa-whatsapp"></i> HACER UN PEDIDO AHORA
         </a>
     </div>
 
