@@ -32,12 +32,13 @@
             .sombra-caja { box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
             .scroll-oculto { -ms-overflow-style: none; scrollbar-width: none; }
             .scroll-oculto::-webkit-scrollbar { display: none; }
+            .moneda-activa { background: #4C1D95 !important; }
         }
     </style>
 </head>
 <body class="gradiente-fondo text-white font-sans min-h-screen">
 
-    <!-- NAVBAR IGUAL QUE LA ORIGINAL -->
+    <!-- NAVBAR -->
     <nav class="fixed top-0 w-full bg-oscuro/90 backdrop-blur-md z-50 borde-luz">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-rosa">SJ Netbook Jack</a>
@@ -48,7 +49,7 @@
                 <a href="#contacto" class="hover:text-rosa transition">Contacto</a>
             </div>
             <div class="flex items-center gap-4">
-                <div id="iconoCarrito" class="relative cursor-pointer">
+                <div id="iconoCarrito" class="relative cursor-pointer" onclick="abrirCarrito()">
                     <i class="fa fa-shopping-cart text-2xl hover:text-rosa transition"></i>
                     <span id="contadorCarrito" class="absolute -top-2 -right-2 bg-rosa text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">0</span>
                 </div>
@@ -58,7 +59,7 @@
     </nav>
 
 
-    <!-- SECCIÓN HERO IGUAL -->
+    <!-- SECCIÓN HERO -->
     <section id="inicio" class="pt-28 pb-20 px-4 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <img src="https://images.unsplash.com/photo-1513399233102-d3142501670b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Jack Skellington" class="w-full h-full object-cover">
@@ -71,10 +72,10 @@
     </section>
 
 
-    <!-- SELECTOR DE MONEDA IGUAL -->
+    <!-- SELECTOR DE MONEDA -->
     <section class="px-4 mb-10">
         <div class="container mx-auto flex flex-wrap gap-3 justify-center">
-            <button class="moneda-activa bg-violeta px-4 py-2 rounded-lg font-semibold hover:bg-morado transition" data-moneda="ARS">$ ARS</button>
+            <button class="moneda-activa bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="ARS">$ ARS</button>
             <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="PEN">S/. PEN</button>
             <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="USD">$ USDT</button>
             <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="MXN">$ MXN</button>
@@ -83,13 +84,59 @@
     </section>
 
 
-    <!-- SECCIÓN SERVICIOS - TUS PRODUCTOS -->
+    <!-- MODAL CARRITO -->
+    <div id="modalCarrito" class="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 hidden items-center justify-center p-4">
+        <div class="bg-fondo/95 borde-luz rounded-2xl p-6 w-full max-w-md max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold">🛒 Tu Carrito</h3>
+                <button onclick="cerrarCarrito()" class="text-2xl hover:text-red-400">&times;</button>
+            </div>
+
+            <div id="listaCarrito" class="space-y-3 mb-4 overflow-y-auto scroll-oculto flex-1">
+                <p class="text-white/60 text-center py-6">El carrito está vacío</p>
+            </div>
+
+            <div class="border-t border-white/20 pt-4 mb-4">
+                <div class="flex justify-between text-xl font-bold">
+                    <span>Total:</span>
+                    <span id="totalCarrito">$ 0</span>
+                </div>
+            </div>
+
+            <button onclick="abrirFormulario()" class="w-full bg-green-600 py-3 rounded-xl font-bold text-lg hover:bg-green-700 transition-all">
+                ✅ FINALIZAR PEDIDO
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MODAL FORMULARIO -->
+    <div id="modalFormulario" class="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 hidden items-center justify-center p-4">
+        <div class="bg-fondo/95 borde-luz rounded-2xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">📋 Datos del Pedido</h3>
+                <button onclick="cerrarFormulario()" class="text-2xl hover:text-red-400">&times;</button>
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-2 text-lg">¿Cuál es tu nombre?</label>
+                <input type="text" id="nombreCliente" placeholder="Ej: Juan Pérez" class="w-full bg-white/10 borde-luz rounded-lg p-3 text-lg focus:outline-none focus:bg-white/20">
+            </div>
+
+            <button onclick="enviarWhatsApp()" class="w-full bg-green-600 py-3 rounded-xl font-bold text-lg hover:bg-green-700 transition-all">
+                📤 ENVIAR POR WHATSAPP
+            </button>
+        </div>
+    </div>
+
+
+    <!-- SECCIÓN SERVICIOS -->
     <section id="servicios" class="px-4 mb-20">
         <div class="container mx-auto">
             <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-12 text-center">Nuestros Servicios</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-                <!-- NETFLIX -->
+                <!-- Netflix -->
                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Netflix</h3>
@@ -98,10 +145,10 @@
                         <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 8.000</span></p>
                         <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 12.000</span></p>
                     </div>
-                    <button onclick="agregarAlCarrito('Netflix', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                    <button onclick="agregar('Netflix', '1 Dispositivo', 6000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
-                <!-- DISNEY+ -->
+                <!-- Disney+ -->
                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Disney+</h3>
@@ -110,10 +157,10 @@
                         <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 7.000</span></p>
                         <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 14.000</span></p>
                     </div>
-                    <button onclick="agregarAlCarrito('Disney+', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                    <button onclick="agregar('Disney+', '1 Dispositivo', 5000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
-                <!-- HBO MAX -->
+                <!-- HBO Max -->
                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/HBO_Max_2023.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">HBO Max</h3>
@@ -122,10 +169,10 @@
                         <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 8.000</span></p>
                         <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 12.000</span></p>
                     </div>
-                    <button onclick="agregarAlCarrito('HBO Max', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                    <button onclick="agregar('HBO Max', '1 Dispositivo', 5000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
-                <!-- CRUNCHYROLL -->
+                <!-- Crunchyroll -->
                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Crunchyroll_logo_2018.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Crunchyroll</h3>
@@ -134,10 +181,10 @@
                         <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 6.000</span></p>
                         <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 10.000</span></p>
                     </div>
-                    <button onclick="agregarAlCarrito('Crunchyroll', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                    <button onclick="agregar('Crunchyroll', '1 Dispositivo', 4000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
-                <!-- PARAMOUNT+ -->
+                <!-- Paramount+ -->
                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Paramount%2B_logo_2021.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Paramount+</h3>
@@ -146,46 +193,18 @@
                         <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 4.800</span></p>
                         <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 5.700</span></p>
                     </div>
-                    <button onclick="agregarAlCarrito('Paramount+', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                    <button onclick="agregar('Paramount+', '1 Dispositivo', 3600)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
-                <!-- INTERNET PERSONAL -->
+                <!-- Internet Personal -->
                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
                     <div class="text-4xl text-center mb-4">📶</div>
                     <h3 class="text-xl font-bold text-center mb-2">Internet Ilimitado <br> Línea Personal</h3>
                     <p class="text-center text-white/70 mb-4">Sin cortes, alta velocidad</p>
-                    <p class="text-center font-bold mb-4">Precio: A convenir</p>
-                    <button onclick="agregarAlCarrito('Internet Personal', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Consultar</button>
+                    <p class="text-center font-bold mb-4">A convenir</p>
+                    <button onclick="agregar('Internet Personal', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
-                <!-- LUZRZAVIC -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
-                    <div class="text-4xl text-center mb-4">⚡</div>
-                    <h3 class="text-xl font-bold text-center mb-2">Internet Ilimitado <br> Luzrzavic</h3>
-                    <p class="text-center text-white/70 mb-4">Ilimitado y estable</p>
-                    <p class="text-center font-bold mb-4">Precio: A convenir</p>
-                    <button onclick="agregarAlCarrito('Internet Luzrzavic', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Consultar</button>
-                </div>
-
-                <!-- POWER SIGNALS -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
-                    <div class="text-4xl text-center mb-4">⚽📺</div>
-                    <h3 class="text-xl font-bold text-center mb-2">Power Signals <br> Fútbol y Series</h3>
-                    <p class="text-center text-white/70 mb-4">Señales estables</p>
-                    <p class="text-center font-bold mb-4">Precio: A convenir</p>
-                    <button onclick="agregarAlCarrito('Power Signals', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Consultar</button>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- SECCIÓN COMBOS -->
-    <section id="combos" class="px-4 mb-20 bg-fondo/30 py-16">
-        <div class="container mx-auto">
-            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-12 text-center">🎁 Combos Especiales 🔥</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-
-                <div class="bg-fondo/80 rounded-xl p-6 borde-luz sombra-caja text-center hover:scale-[1.03] transition-transform">
-                    <h3
+                <!-- Luzrzavic -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded
+                 
