@@ -3,118 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ NETWORKS - Catálogo Oficial</title>
-    <style>
-        :root { --cian: #00d4ff; --magenta: #ff00ff; --oscuro: #0a0a0a; --bg-card: #111; }
-        body { background: var(--oscuro); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-        
-        /* HEADER */
-        .header { padding: 30px 20px; text-align: center; border-bottom: 2px solid var(--cian); background: #111; }
-        .header-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--cian); object-fit: cover; box-shadow: 0 0 15px var(--cian); }
-        .tienda-nombre { font-size: 24px; font-weight: 900; margin-top: 10px; letter-spacing: 2px; text-transform: uppercase; }
-        .frase-jack { color: var(--magenta); font-size: 13px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
-        
-        /* SECCIONES Y GRILLA */
-        .seccion-titulo { color: var(--cian); text-transform: uppercase; font-size: 13px; margin: 25px 20px 10px; border-left: 4px solid var(--cian); padding-left: 10px; font-weight: 800; }
-        .catalogar { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 12px; padding: 0 20px 20px; max-width: 1200px; margin: 0 auto; }
-        
-        /* TARJETAS */
-        .card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; transition: 0.3s; }
-        .card:hover { border-color: var(--magenta); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 0, 255, 0.2); }
-        .img-container { width: 100%; height: 130px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; }
-        .card-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; min-height: 35px; color: #fff; }
-        
-        .selector-opciones { width: 100%; padding: 8px; background: #222; color: var(--cian); border: 1px solid #444; border-radius: 5px; margin-bottom: 10px; font-size: 11px; font-weight: bold; outline: none; }
-        .btn-comprar { background: var(--cian); color: black; border: none; width: 100%; padding: 12px; border-radius: 6px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 10px; }
-        
-        /* MODAL */
-        #modal-nombre { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: #1a1a1a; padding: 25px; border-radius: 12px; border: 2px solid var(--magenta); text-align: center; width: 85%; max-width: 300px; }
-        .modal-content input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px; border: 1px solid #444; background: #000; color: white; text-align: center; box-sizing: border-box; font-size: 16px; }
-        .btn-confirmar { background: var(--magenta); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; width: 100%; cursor: pointer; text-transform: uppercase; }
+    <title>SJ Netbook Jack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oscuro: '#0B0B0F',
+                        fondo: '#12121A',
+                        morado: '#6D28D9',
+                        violeta: '#4C1D95',
+                        rosa: '#A855F7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gradiente-fondo { background: linear-gradient(180deg, #0B0B0F 0%, #1E1B4B 100%); }
+            .gradiente-boton { background: linear-gradient(90deg, #6D28D9 0%, #A855F7 100%); }
+            .borde-luz { border: 1px solid rgba(168, 85, 247, 0.2); }
+            .sombra-caja { box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+            .scroll-oculto { -ms-overflow-style: none; scrollbar-width: none; }
+            .scroll-oculto::-webkit-scrollbar { display: none; }
+        }
     </style>
 </head>
-<body>
-    <div class="header">
-        <img src="https://i.pinimg.com/736x/21/6b/94/216b9442080072b220c34538d5830b91.jpg" class="header-logo">
-        <div class="tienda-nombre">SJ NETWORKS</div>
-        <div class="frase-jack">Tu entretenimiento lo encontrás acá 💀</div>
-    </div>
+<body class="gradiente-fondo text-white font-sans min-h-screen">
 
-    <div class="seccion-titulo">📺 TV Y CINE</div>
-    <div id="cat-tv" class="catalogar"></div>
-
-    <div class="seccion-titulo">🎬 CUENTAS PREMIUM</div>
-    <div id="cat-streaming" class="catalogar"></div>
-
-    <div class="seccion-titulo">📶 INTERNET Y CARGAS</div>
-    <div id="cat-otros" class="catalogar"></div>
-
-    <div id="modal-nombre">
-        <div class="modal-content">
-            <h3 style="margin:0; font-size:18px; color: var(--magenta);">¡PEDIDO CASI LISTO! 💀</h3>
-            <p style="font-size: 13px; margin-top: 10px;">Ingresá tu nombre para procesar la compra:</p>
-            <input type="text" id="input-nombre" placeholder="Tu nombre o apodo">
-            <button class="btn-confirmar" onclick="enviarPedido()">ENVIAR A WHATSAPP</button>
+    <!-- NAVBAR IGUAL QUE LA ORIGINAL -->
+    <nav class="fixed top-0 w-full bg-oscuro/90 backdrop-blur-md z-50 borde-luz">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-rosa">SJ Netbook Jack</a>
+            <div class="hidden md:flex gap-8">
+                <a href="#inicio" class="hover:text-rosa transition">Inicio</a>
+                <a href="#servicios" class="hover:text-rosa transition">Servicios</a>
+                <a href="#combos" class="hover:text-rosa transition">Combos</a>
+                <a href="#contacto" class="hover:text-rosa transition">Contacto</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div id="iconoCarrito" class="relative cursor-pointer">
+                    <i class="fa fa-shopping-cart text-2xl hover:text-rosa transition"></i>
+                    <span id="contadorCarrito" class="absolute -top-2 -right-2 bg-rosa text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">0</span>
+                </div>
+                <button class="md:hidden text-2xl">☰</button>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <script>
-        const productos = [
-            /* TV Y CINE */
-            { cat: "tv", nombre: "Magis TV (Oficial)", img: "https://i.ibb.co/L6S8tG0/magis-tv.jpg", opciones: ["1 Mes ➝ $4.500", "3 Meses ➝ $12.000"] },
-            { cat: "tv", nombre: "Tele Latino", img: "https://i.ibb.co/hZ7X9L1/tele-latino.jpg", opciones: ["1 Mes ➝ $4.000", "Anual ➝ $25.000"] },
-            
-            /* CUENTAS PREMIUM */
-            { cat: "streaming", nombre: "Netflix Premium", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400", opciones: ["1 Pantalla ➝ $6.000", "Cuenta Completa ➝ $12.000"] },
-            { cat: "streaming", nombre: "Disney+ Premium", img: "https://images.unsplash.com/photo-1635334336040-3b4f69747c3e?w=400", opciones: ["1 Pantalla ➝ $5.000", "Cuenta Completa ➝ $14.000"] },
-            { cat: "streaming", nombre: "Spotify Premium", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400", opciones: ["30 Días ➝ $2.800", "60 Días ➝ $5.400"] },
-            { cat: "streaming", nombre: "Amazon Prime Video", img: "https://images.unsplash.com/photo-1585647347384-2593bcc357d3?w=400", opciones: ["1 Mes ➝ $4.000"] },
-            
-            /* INTERNET Y CARGAS */
-            { cat: "otros", nombre: "Internet Ilimitado (Lurzavic)", img: "https://i.ibb.co/L6S8tG0/internet-vph.jpg", opciones: ["30 Días ➝ $10.000", "Prueba Gratis"] },
-            { cat: "otros", nombre: "Free Fire 💎", img: "https://i.pinimg.com/736x/0a/6c/0e/0a6c0e52a8b981503893322675685785.jpg", opciones: ["Consultar Packs de Diamantes"] }
-        ];
 
-        let pedidoTemporal = "";
+    <!-- SECCIÓN HERO IGUAL -->
+    <section id="inicio" class="pt-28 pb-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1513399233102-d3142501670b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Jack Skellington" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto text-center relative z-10">
+            <h1 class="text-[clamp(2.5rem,6vw,5rem)] font-extrabold mb-4">Tu mundo de entretenimiento</h1>
+            <p class="text-[clamp(1.1rem,2.5vw,1.6rem)] text-white/80 max-w-3xl mx-auto mb-8">Tu entretenimiento lo encontrás acá! Disfruta todo lo que querés sin complicaciones y al mejor precio.</p>
+            <a href="#servicios" class="gradiente-boton px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition">✓ Ver Servicios</a>
+        </div>
+    </section>
 
-        function render() {
-            productos.forEach((p, i) => {
-                const cont = document.getElementById(`cat-${p.cat}`);
-                if (cont) {
-                    let opts = p.opciones.map(o => `<option value="${o}">${o}</option>`).join('');
-                    cont.innerHTML += `
-                        <div class="card">
-                            <div class="img-container"><img src="${p.img}" class="card-img" alt="${p.nombre}"></div>
-                            <div class="card-body">
-                                <div class="card-title">${p.nombre}</div>
-                                <select id="s-${i}" class="selector-opciones">${opts}</select>
-                                <button class="btn-comprar" onclick="confirmarPedido(${i})">Comprar</button>
-                            </div>
-                        </div>`;
-                }
-            });
-        }
 
-        function confirmarPedido(i) {
-            const opcion = document.getElementById(`s-${i}`).value;
-            pedidoTemporal = `🛒 *${productos[i].nombre}*%0A📍 *Opción:* ${opcion}`;
-            document.getElementById('modal-nombre').style.display = 'flex';
-        }
+    <!-- SELECTOR DE MONEDA IGUAL -->
+    <section class="px-4 mb-10">
+        <div class="container mx-auto flex flex-wrap gap-3 justify-center">
+            <button class="moneda-activa bg-violeta px-4 py-2 rounded-lg font-semibold hover:bg-morado transition" data-moneda="ARS">$ ARS</button>
+            <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="PEN">S/. PEN</button>
+            <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="USD">$ USDT</button>
+            <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="MXN">$ MXN</button>
+            <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="EUR">€ EUR</button>
+        </div>
+    </section>
 
-        function enviarPedido() {
-            const nombre = document.getElementById('input-nombre').value;
-            if(!nombre) return alert("Por favor, poné tu nombre.");
-            
-            const nroWhatsApp = "5491134361679"; // Tu número de SJ Networks
-            window.open(`https://wa.me/${nroWhatsApp}?text=¡Hola Jack! 💀%0A%0ASoy: *${nombre}*%0AQuiero contratar: ${pedidoTemporal}`);
-            document.getElementById('modal-nombre').style.display = 'none';
-        }
 
-        window.onload = render;
-    </script>
-</body>
-</html>
+    <!-- SECCIÓN SERVICIOS - TUS PRODUCTOS -->
+    <section id="servicios" class="px-4 mb-20">
+        <div class="container mx-auto">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-12 text-center">Nuestros Servicios</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- NETFLIX -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-16 mx-auto mb-4 object-contain">
+                    <h3 class="text-xl font-bold text-center mb-2">Netflix</h3>
+                    <div class="space-y-2 mb-4">
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 6.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 8.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 12.000</span></p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Netflix', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                </div>
+
+                <!-- DISNEY+ -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="h-16 mx-auto mb-4 object-contain">
+                    <h3 class="text-xl font-bold text-center mb-2">Disney+</h3>
+                    <div class="space-y-2 mb-4">
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 5.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 7.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 14.000</span></p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Disney+', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                </div>
+
+                <!-- HBO MAX -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/HBO_Max_2023.svg" class="h-16 mx-auto mb-4 object-contain">
+                    <h3 class="text-xl font-bold text-center mb-2">HBO Max</h3>
+                    <div class="space-y-2 mb-4">
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 5.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 8.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 12.000</span></p>
+                    </div>
+                    <button onclick="agregarAlCarrito('HBO Max', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                </div>
+
+                <!-- CRUNCHYROLL -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Crunchyroll_logo_2018.svg" class="h-16 mx-auto mb-4 object-contain">
+                    <h3 class="text-xl font-bold text-center mb-2">Crunchyroll</h3>
+                    <div class="space-y-2 mb-4">
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 4.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 6.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 10.000</span></p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Crunchyroll', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                </div>
+
+                <!-- PARAMOUNT+ -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Paramount%2B_logo_2021.svg" class="h-16 mx-auto mb-4 object-contain">
+                    <h3 class="text-xl font-bold text-center mb-2">Paramount+</h3>
+                    <div class="space-y-2 mb-4">
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 3.600</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 4.800</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 5.700</span></p>
+                    </div>
+                    <button onclick="agregarAlCarrito('Paramount+', 'A elegir', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Comprar</button>
+                </div>
+
+                <!-- INTERNET PERSONAL -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <div class="text-4xl text-center mb-4">📶</div>
+                    <h3 class="text-xl font-bold text-center mb-2">Internet Ilimitado <br> Línea Personal</h3>
+                    <p class="text-center text-white/70 mb-4">Sin cortes, alta velocidad</p>
+                    <p class="text-center font-bold mb-4">Precio: A convenir</p>
+                    <button onclick="agregarAlCarrito('Internet Personal', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Consultar</button>
+                </div>
+
+                <!-- LUZRZAVIC -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <div class="text-4xl text-center mb-4">⚡</div>
+                    <h3 class="text-xl font-bold text-center mb-2">Internet Ilimitado <br> Luzrzavic</h3>
+                    <p class="text-center text-white/70 mb-4">Ilimitado y estable</p>
+                    <p class="text-center font-bold mb-4">Precio: A convenir</p>
+                    <button onclick="agregarAlCarrito('Internet Luzrzavic', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Consultar</button>
+                </div>
+
+                <!-- POWER SIGNALS -->
+                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                    <div class="text-4xl text-center mb-4">⚽📺</div>
+                    <h3 class="text-xl font-bold text-center mb-2">Power Signals <br> Fútbol y Series</h3>
+                    <p class="text-center text-white/70 mb-4">Señales estables</p>
+                    <p class="text-center font-bold mb-4">Precio: A convenir</p>
+                    <button onclick="agregarAlCarrito('Power Signals', 'Consulta', 0)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">Consultar</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN COMBOS -->
+    <section id="combos" class="px-4 mb-20 bg-fondo/30 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-12 text-center">🎁 Combos Especiales 🔥</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+
+                <div class="bg-fondo/80 rounded-xl p-6 borde-luz sombra-caja text-center hover:scale-[1.03] transition-transform">
+                    <h3
