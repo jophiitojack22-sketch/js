@@ -33,6 +33,7 @@
             .scroll-oculto { -ms-overflow-style: none; scrollbar-width: none; }
             .scroll-oculto::-webkit-scrollbar { display: none; }
             .moneda-activa { background: #4C1D95 !important; }
+            .tarjeta { @apply bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform; }
         }
     </style>
 </head>
@@ -58,6 +59,7 @@
         </div>
     </nav>
 
+
     <!-- SECCIÓN HERO -->
     <section id="inicio" class="pt-28 pb-20 px-4 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
@@ -70,6 +72,7 @@
         </div>
     </section>
 
+
     <!-- SELECTOR DE MONEDA -->
     <section class="px-4 mb-10">
         <div class="container mx-auto flex flex-wrap gap-3 justify-center">
@@ -80,6 +83,7 @@
             <button class="bg-fondo px-4 py-2 rounded-lg font-semibold hover:bg-violeta/50 transition" data-moneda="EUR">€ EUR</button>
         </div>
     </section>
+
 
     <!-- MODAL CARRITO -->
     <div id="modalCarrito" class="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 hidden items-center justify-center p-4">
@@ -101,6 +105,7 @@
         </div>
     </div>
 
+
     <!-- MODAL FORMULARIO -->
     <div id="modalFormulario" class="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 hidden items-center justify-center p-4">
         <div class="bg-fondo/95 borde-luz rounded-2xl p-6 w-full max-w-md">
@@ -116,6 +121,7 @@
         </div>
     </div>
 
+
     <!-- SECCIÓN SERVICIOS -->
     <section id="servicios" class="px-4 mb-20">
         <div class="container mx-auto">
@@ -123,69 +129,69 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
                 <!-- Netflix -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                <div class="tarjeta">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Netflix</h3>
                     <div class="space-y-2 mb-4">
-                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 6.000</span></p>
-                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 8.000</span></p>
-                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 12.000</span></p>
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold precio" data-precio="6000">$ 6.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold precio" data-precio="8000">$ 8.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold precio" data-precio="12000">$ 12.000</span></p>
                     </div>
                     <button onclick="agregar('Netflix - 1 Dispositivo', 6000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
                 <!-- Disney+ -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                <div class="tarjeta">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Disney+</h3>
                     <div class="space-y-2 mb-4">
-                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 5.000</span></p>
-                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 7.000</span></p>
-                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 14.000</span></p>
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold precio" data-precio="5000">$ 5.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold precio" data-precio="7000">$ 7.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold precio" data-precio="14000">$ 14.000</span></p>
                     </div>
                     <button onclick="agregar('Disney+ - 1 Dispositivo', 5000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
                 <!-- HBO Max -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                <div class="tarjeta">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/HBO_Max_2023.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">HBO Max</h3>
                     <div class="space-y-2 mb-4">
-                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 5.000</span></p>
-                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 8.000</span></p>
-                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 12.000</span></p>
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold precio" data-precio="5000">$ 5.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold precio" data-precio="8000">$ 8.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold precio" data-precio="12000">$ 12.000</span></p>
                     </div>
                     <button onclick="agregar('HBO Max - 1 Dispositivo', 5000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
                 <!-- Crunchyroll -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                <div class="tarjeta">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Crunchyroll_logo_2018.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Crunchyroll</h3>
                     <div class="space-y-2 mb-4">
-                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 4.000</span></p>
-                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 6.000</span></p>
-                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 10.000</span></p>
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold precio" data-precio="4000">$ 4.000</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold precio" data-precio="6000">$ 6.000</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold precio" data-precio="10000">$ 10.000</span></p>
                     </div>
                     <button onclick="agregar('Crunchyroll - 1 Dispositivo', 4000)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
                 <!-- Paramount+ -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                <div class="tarjeta">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Paramount%2B_logo_2021.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Paramount+</h3>
                     <div class="space-y-2 mb-4">
-                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 3.600</span></p>
-                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 4.800</span></p>
-                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold">$ 5.700</span></p>
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold precio" data-precio="3600">$ 3.600</span></p>
+                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold precio" data-precio="4800">$ 4.800</span></p>
+                        <p class="flex justify-between"><span>3 Dispositivos</span><span class="font-bold precio" data-precio="5700">$ 5.700</span></p>
                     </div>
                     <button onclick="agregar('Paramount+ - 1 Dispositivo', 3600)" class="w-full gradiente-boton py-2 rounded-lg font-semibold hover:opacity-90">+ Agregar</button>
                 </div>
 
                 <!-- Prime Video -->
-                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl p-5 borde-luz sombra-caja hover:scale-[1.02] transition-transform">
+                <div class="tarjeta">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Amazon_Prime_Video_logo.svg" class="h-16 mx-auto mb-4 object-contain">
                     <h3 class="text-xl font-bold text-center mb-2">Prime Video</h3>
                     <div class="space-y-2 mb-4">
-                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold">$ 3.500</span></p>
-                        <p class="flex justify-between"><span>2 Dispositivos</span><span class="font-bold">$ 5.000</span></p>
+                        <p class="flex justify-between"><span>1 Dispositivo</span><span class="font-bold precio" data-precio="3500">$ 3.500</span></p>
+                        <p class="flex justify-between"><span>2 Dis
