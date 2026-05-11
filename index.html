@@ -3,188 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ NETBOOK JACK | Catálogo Premium</title>
-    <link href="https://cloudflare.com" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #00f2ff;
-            --accent: #7000ff;
-            --bg: #08080c;
-            --card: #12121a;
-            --text: #ffffff;
+    <title>SJ Netbook Jack - Catálogo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        principal: '#165DFF',
+                        oscuro: '#1D2129',
+                        gris: '#86909C',
+                        fondo: '#F2F3F5',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
         }
-
-        body {
-            background-color: var(--bg);
-            background-image: radial-gradient(circle at 0% 0%, #161625 0%, transparent 50%),
-                              radial-gradient(circle at 100% 100%, #0a0a15 0%, transparent 50%);
-            color: var(--text);
-            font-family: 'Inter', system-ui, sans-serif;
-            margin: 0; padding: 20px;
-            display: flex; flex-direction: column; align-items: center;
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .sombra-suave { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+            .borde-redondo { border-radius: 12px; }
+            .texto-azul { color: #165DFF; }
+            .fondo-azul { background-color: #165DFF; }
+            .fondo-azul-hover { background-color: #0F48C9; }
         }
-
-        .container { max-width: 480px; width: 100%; }
-
-        /* Header Estilo Gamer */
-        .profile { text-align: center; margin-bottom: 30px; }
-        .logo-box {
-            width: 80px; height: 80px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border-radius: 20px; margin: 0 auto 15px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; font-weight: 900; color: white;
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
-        }
-
-        h1 { font-size: 1.5rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .badge-verified { color: var(--primary); font-size: 0.9rem; margin-top: 5px; display: block; }
-
-        /* Estilo de Secciones y Desplegables */
-        .section-label {
-            font-size: 0.75rem; color: #666; text-transform: uppercase;
-            letter-spacing: 2px; margin: 25px 0 10px 5px; font-weight: bold;
-        }
-
-        details {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 15px; margin-bottom: 10px;
-            overflow: hidden; transition: all 0.3s;
-        }
-
-        summary {
-            padding: 18px; list-style: none; display: flex;
-            align-items: center; cursor: pointer; font-weight: 600;
-        }
-
-        summary::-webkit-details-marker { display: none; }
-
-        .icon-service {
-            width: 40px; height: 40px; border-radius: 10px;
-            margin-right: 15px; display: flex; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.3); font-size: 1.2rem;
-        }
-
-        .price-from { margin-left: auto; color: var(--primary); font-weight: bold; }
-
-        /* Contenido de los precios */
-        .details-content {
-            padding: 0 18px 18px;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .price-row {
-            display: flex; justify-content: space-between;
-            padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.9rem; color: #ccc;
-        }
-
-        .price-row strong { color: #00ff88; }
-
-        /* Botón WhatsApp */
-        .btn-ws {
-            position: sticky; bottom: 20px;
-            background: #25d366; color: white;
-            padding: 16px; border-radius: 50px;
-            text-align: center; text-decoration: none;
-            font-weight: bold; display: block; margin-top: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        }
-
-        /* Colores Marcas */
-        .nfx { color: #E50914; }
-        .dsy { color: #0063e5; }
-        .hbo { color: #5822b4; }
-        .cry { color: #ff6600; }
     </style>
 </head>
-<body>
+<body class="bg-fondo min-h-screen font-sans">
 
-    <div class="container">
-        <div class="profile">
-            <div class="logo-box">SJ</div>
-            <h1>SJ NETBOOK JACK</h1>
-            <span class="badge-verified"><i class="fas fa-check-circle"></i> VENDEDOR AUTORIZADO</span>
+    <!-- ENCABEZADO -->
+    <header class="bg-white sombra-suave sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-3 md:mb-0">
+                <h1 class="text-[22px] font-bold text-oscuro">SJ Netbook Jack</h1>
+                <p class="text-sm text-gris">Tu mundo de entretenimiento</p>
+            </div>
+            <nav class="flex gap-6">
+                <a href="#streaming" class="font-medium hover:text-principal transition">Streaming</a>
+                <a href="#internet" class="font-medium hover:text-principal transition">Internet</a>
+                <a href="#combos" class="font-medium hover:text-principal transition">Combos</a>
+                <a href="#freefire" class="font-medium hover:text-principal transition">Free Fire</a>
+                <a href="#signal" class="font-medium hover:text-principal transition">Power Signals</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- AVISO PRINCIPAL -->
+        <div class="bg-white borde-redondo p-6 mb-8 sombra-suave text-center">
+            <h2 class="text-[24px] font-bold text-oscuro mb-2">📋 CATÁLOGO OFICIAL</h2>
+            <p class="text-gris">Todos nuestros productos y precios actualizados - SJ Netbook Jack</p>
         </div>
 
-        <div class="section-label">📺 SERVICIOS DE STREAMING</div>
 
-        <details>
-            <summary>
-                <div class="icon-service nfx"><i class="fab fa-netflix"></i></div>
-                NETFLIX PREMIUM
-                <div class="price-from">$6.000</div>
-            </summary>
-            <div class="details-content">
-                <div class="price-row"><span>1 Dispositivo</span> <strong>$6.000</strong></div>
-                <div class="price-row"><span>2 Dispositivos</span> <strong>$8.000</strong></div>
-                <div class="price-row"><span>3 Dispositivos</span> <strong>$12.000</strong></div>
+        <!-- 📺 SERVICIOS STREAMING -->
+        <section id="streaming" class="mb-12">
+            <h2 class="text-[20px] font-bold mb-6 flex items-center gap-2">
+                <i class="fa fa-play-circle texto-azul"></i> SERVICIOS DE STREAMING
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+                <!-- Netflix -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">Netflix</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Dispositivo</span>
+                            <span class="font-bold text-oscuro">$ 6.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>2 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 8.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>3 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 12.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disney+ -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">Disney+</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Dispositivo</span>
+                            <span class="font-bold text-oscuro">$ 5.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>2 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 7.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>3 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 14.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HBO Max -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/HBO_Max_2023.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">HBO Max</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Dispositivo</span>
+                            <span class="font-bold text-oscuro">$ 5.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>2 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 8.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>3 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 12.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crunchyroll -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Crunchyroll_logo_2018.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">Crunchyroll</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Dispositivo</span>
+                            <span class="font-bold text-oscuro">$ 4.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>2 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 6.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>3 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 10.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paramount+ -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Paramount%2B_logo_2021.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">Paramount+</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Dispositivo</span>
+                            <span class="font-bold text-oscuro">$ 3.600</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>2 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 4.800</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>3 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 5.700</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prime Video -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Amazon_Prime_Video_logo.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">Prime Video</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Dispositivo</span>
+                            <span class="font-bold text-oscuro">$ 3.500</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>2 Dispositivos</span>
+                            <span class="font-bold text-oscuro">$ 5.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spotify -->
+                <div class="bg-white borde-redondo p-5 sombra-suave hover:scale-[1.02] transition-transform">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" class="h-14 mx-auto mb-4 object-contain">
+                    <h3 class="text-lg font-bold text-center mb-3">Spotify Premium</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center py-1 border-b border-gray-100">
+                            <span>1 Mes</span>
+                            <span class="font-bold text-oscuro">$ 5.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span>3 Meses</span>
+                            <span class="font-bold text-oscuro">$ 15.000</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </details>
+        </section>
 
-        <details>
-            <summary>
-                <div class="icon-service dsy"><i class="fas fa-play"></i></div>
-                DISNEY+
-                <div class="price-from">$5.000</div>
-            </summary>
-            <div class="details-content">
-                <div class="price-row"><span>1 Dispositivo</span> <strong>$5.000</strong></div>
-                <div class="price-row"><span>2 Dispositivos</span> <strong>$7.000</strong></div>
-                <div class="price-row"><span>3 Dispositivos</span> <strong>$14.000</strong></div>
+
+        <!-- 🌐 INTERNET ILIMITADO -->
+        <section id="internet" class="mb-12">
+            <h2 class="text-[20px] font-bold mb-6 flex items-center gap-2">
+                <i class="fa fa-wifi texto-azul"></i> INTERNET ILIMITADO
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <!-- Plan Personal -->
+                <div class="bg-white borde-redondo p-6 sombra-suave">
+                    <h3 class="text-lg font-bold mb-4 text-center">📶 PLAN PERSONAL</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span>7 Días</span>
+                            <span class="font-bold">$ 5.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span>15 Días</span>
+                            <span class="font-bold">$ 8.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span>30 Días</span>
+                            <span class="font-bold">$ 12.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart TV / TV BOX -->
+                <div class="bg-white borde-redondo p-6 sombra-suave">
+                    <h3 class="text-lg font-bold mb-4 text-center">📺 SMART TV / TV BOX</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span>7 Días</span>
+                            <span class="font-bold">$ 6.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span>15 Días</span>
+                            <span class="font-bold">$ 9.500</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span>30 Días</span>
+                            <span class="font-bold">$ 15.000</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </details>
+        </section>
 
-        <div class="section-label">📦 COMBOS POR DISPOSITIVOS</div>
 
-        <details>
-            <summary>
-                <div class="icon-service" style="color: var(--primary)"><i class="fas fa-box-open"></i></div>
-                COMBOS FULL
-                <div class="price-from">$15.000</div>
-            </summary>
-            <div class="details-content">
-                <div class="price-row"><span>Combo 1 Disp (N+D+H+P)</span> <strong>$15.000</strong></div>
-                <div class="price-row"><span>Combo 2 Disp (N+D+H+P)</span> <strong>$22.000</strong></div>
-                <div class="price-row"><span>Combo 3 Disp (N+D+H+P)</span> <strong>$32.000</strong></div>
-                <div class="price-row"><span>Combo Anime (N+C)</span> <strong>$9.000</strong></div>
-            </div>
-        </details>
+        <!-- 📦 COMBOS -->
+        <section id="combos" class="mb-12">
+            <h2 class="text-[20px] font-bold mb-6 flex items-center gap-2">
+                <i class="fa fa-shopping-basket texto-azul"></i> COMBOS ESPECIALES
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-        <div class="section-label">🌐 INTERNET ILIMITADO</div>
+                <div class="bg-white borde-redondo p-5 sombra-suave border-l-4 border-principal">
+                    <h3 class="font-bold text-center mb-2">📱 COMBO 1 DISPOSITIVO</h3>
+                    <p class="text-sm text-center text-gris mb-3">Netflix + Disney+ + HBO Max + Prime Video</p>
+                    <p class="text-center text-lg font-bold texto-azul">$ 15.000</p>
+                </div>
 
-        <details>
-            <summary>
-                <div class="icon-service" style="color: #00ff88"><i class="fas fa-wifi"></i></div>
-                PLAN CELULAR / TV
-                <div class="price-from">$5.000</div>
-            </summary>
-            <div class="details-content">
-                <div class="price-row"><span>Personal (7 días)</span> <strong>$5.000</strong></div>
-                <div class="price-row"><span>Personal (30 días)</span> <strong>$12.000</strong></div>
-                <div class="price-row"><span>Smart TV (30 días)</span> <strong>$15.000</strong></div>
-            </div>
-        </details>
+                <div class="bg-white borde-redondo p-5 sombra-suave border-l-4 border-principal">
+                    <h3 class="font-bold text-center mb-2">📱📱 COMBO 2 DISPOSITIVOS</h3>
+                    <p class="text-sm text-center text-gris mb-3">Netflix + Disney+ + HBO Max + Prime Video</p>
+                    <p class="text-center text-lg font-bold texto-azul">$ 22.000</p>
+                </div>
 
-        <div class="section-label">💎 GAMING & SEÑALES</div>
-
-        <details>
-            <summary>
-                <div class="icon-service" style="color: #ffcc00"><i class="fas fa-gem"></i></div>
-                FREE FIRE DIAMANTES
-            </summary>
-            <div class="details-content">
-                <div class="price-row"><span>100 Diamantes</span> <strong>$3.000</strong></div>
-                <div class="price-row"><span>520 Diamantes</span> <strong>$8.500</strong></div>
-                <div class="price-row"><span>1060 Diamantes</span> <strong>$12.000</strong></div>
-            </div>
-        </details>
-
-        <a href="https://wa.me" class="btn-ws">
-            <i class="fab fa-whatsapp"></i> HACER UN PEDIDO AHORA
-        </a>
-    </div>
-
-</body>
-</html>
+                <div class="bg-white borde-redondo p-5 sombra-suave border-l-4 border-principal">
+                    <h3 class="font-bold text-center mb-2">📱📱📱 COMBO 3 DISPOSITIVOS
